@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react';
 import logo from '../images/logo.png'
+import PrimaryButton from './PrimaryButton';
 
 
 const Styles = {
@@ -41,7 +42,7 @@ const Navbar = () => {
     return (
         <AppBar position="static" sx={{
             backgroundColor: 'white',
-            height: '100px', boxShadow: 'none',
+            boxShadow: 'none',
             padding: '40px 0px'
         }}>
             <Container maxWidth="xl">
@@ -151,7 +152,8 @@ const Navbar = () => {
                         }} />
 
                         <Box sx={{
-                            justifyContent: 'space-evenly',
+                            display: 'flex',
+                            justifyContent: 'space-between',
                             flexBasis: "500px"
                         }}>
                             <Button href="#outlined-buttons" sx={Styles.navlink}>
@@ -166,11 +168,11 @@ const Navbar = () => {
                         </Box>
                     </Box>
 
+
+
+
                     <Box sx={{ flexGrow: 0 }}>
-                        <Button variant="contained" color="error"
-                            sx={Styles.loginButton}>
-                            Login
-                        </Button>
+                        <PrimaryButton text="Login" />
                     </Box>
                 </Toolbar>
             </Container>
