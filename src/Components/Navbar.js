@@ -167,10 +167,6 @@ const Navbar = () => {
                             </Button>
                         </Box>
                     </Box>
-
-
-
-
                     <Box sx={{ flexGrow: 0 }}>
                         <PrimaryButton text="Login" />
                     </Box>
