@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import React from 'react';
 import logo from '../images/logo.png'
-import PrimaryButton from './PrimaryButton';
+import PrimaryButton from './layout/PrimaryButton';
 
 
 const Styles = {
