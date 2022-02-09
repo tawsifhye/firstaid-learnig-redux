@@ -1,9 +1,11 @@
 
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
+import zIndex from '@mui/material/styles/zIndex';
 import React from 'react';
 import doctorImage from '../../images/doctors.png'
 
-const HeroLayout = () => {
+const HeroLayout = ({ position, text }) => {
+    console.log();
     return (
         // backgroundColor: '#FFF6F6'
         <div>
@@ -11,19 +13,40 @@ const HeroLayout = () => {
             <Box sx={{ width: '100%' }}>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
                     <Grid item xs={6} sx={{ backgroundColor: '#FFF6F6', position: 'relative', overflow: 'hidden' }}>
+
+                        <Typography
+                            sx={{
+                                fontFamily: 'Circular Std',
+                                fontStyle: 'normal',
+                                fontWeight: 900,
+                                fontSize: '55px',
+                                lineHeight: '125%',
+                                color: '#272D4E',
+                                whiteSpace: 'pre-line'
+                            }}>
+                            {text}
+                        </Typography>
                         <Box
                             sx={{
-                                width: '300px',
-                                height: '300px',
+                                width: '350px',
+                                height: '350px',
                                 backgroundColor: '#FFE4E0',
                                 borderRadius: '50%',
                                 position: 'absolute',
-                                bottom: '-90px',
-                                right: '-40px',
-                                overflow: 'hidden'
+                                bottom: position.bottom,
+                                right: position.right,
+
                             }}
-                        />
-                        {/* <img src={doctorImage} alt="" /> */}
+                        >
+                            <img src={doctorImage} alt=""
+                                style={{
+                                    width: '80%',
+                                    position: 'absolute',
+                                    bottom: '91px',
+                                    right: '40px'
+                                }} />
+
+                        </Box>
 
 
                     </Grid>
