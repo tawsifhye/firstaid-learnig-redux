@@ -71,8 +71,14 @@ const LoginModal = ({ handleClose, open, registered, setRegistered }) => {
                         </Typography>
                         <AuthenticationButton text='Log In With Google' backgroundColor='#4688F1' icon={google_icon} />
                         <AuthenticationButton text='Log In With Facebook' backgroundColor='#3E5C97' icon={facebook_icon} />
-                        <Box sx={{ mt: '100px', mb: '20px' }}>
-                            <hr style={{ display: 'inline-block', width: '40%' }} /> <span>OR</span> <hr style={{ display: 'inline-block', width: '40%' }} />
+                        <Box sx={{ mt: '100px', mb: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <hr style={{ width: '40%' }} /> <span style={{
+                                fontWeight: 600,
+                                fontSize: '12px',
+                                texAlign: 'center',
+                                textTransform: 'uppercase',
+                                color: '#767676'
+                            }}>OR</span> <hr style={{ width: '40%' }} />
                         </Box>
                         <Box>
                             <Typography sx={Styles.label}>Email</Typography>
