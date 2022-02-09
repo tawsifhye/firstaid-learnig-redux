@@ -1,12 +1,13 @@
 import { Box, Container, Grid, Link, Typography } from '@mui/material';
 import React from 'react';
-import HeroLayout from './layout/HeroLayout';
-import PrimaryButton from './layout/PrimaryButton';
+import HeroLayout from './shared/HeroLayout';
+import PrimaryButton from './shared/PrimaryButton';
 import doctorImage from '../images/doctors.png'
 import first_aid_box from '../images/first-aid-box.png'
 import quiz_grid from '../images/grid3.png'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import Tagline from './shared/Tagline';
 const Styles = {
     gridStyle: {
         backgroundColor: '#FFF6F6',
@@ -30,9 +31,9 @@ const Hero = () => {
                                 <HeroLayout styling={{
                                     bottom: '-111px',
                                     right: '-40px',
-                                    fontSize: '55px',
-                                }} text={<div>Engaging & <br /> Accessible Online <br /> Course</div>}
+                                }}
                                 />
+                                <Tagline text={<div>Engaging & <br /> Accessible Online <br /> Course</div>} />
                             </Box>
                             <Box>
                                 <img src={doctorImage} alt=""
@@ -53,8 +54,10 @@ const Hero = () => {
                                     bottom: '-103px',
                                     right: '-127px',
                                     fontSize: '35px'
-                                }} text={<div>Trustable First Aid <br /> Courses Online</div>}
+                                }}
                                 />
+
+                                <Tagline text={<div>Trustable First Aid <br /> Courses Online</div>} fontSize='35px' />
 
                                 <Box component="span" sx={{ display: 'flex', alignItems: 'center', mt: { xs: 1, lg: 2 }, }}>
                                     <PlayArrowIcon
@@ -98,9 +101,9 @@ const Hero = () => {
                                 <HeroLayout styling={{
                                     bottom: '-103px',
                                     right: '-127px',
-                                    fontSize: '35px'
                                 }} text={<div>Awesome Quizzes <br /> you can explore</div>}
                                 />
+                                <Tagline text={<div>Awesome Quizzes <br /> you can explore</div>} fontSize='35px' />
                                 <Box component="span" sx={{ display: 'flex', alignItems: 'center', mt: 2, }}>
                                     <Box sx={{
 
