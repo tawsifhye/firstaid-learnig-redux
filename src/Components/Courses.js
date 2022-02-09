@@ -1,9 +1,14 @@
 import { Container } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Content from './shared/Content';
 import Tagline from './shared/Tagline'
 const Courses = () => {
+    useEffect(() => {
+        fetch('courselist.json')
+            .then(data => data.json())
+            .then(data => console.log(data))
+    }, [])
     return (
         <div>
             <Container maxWidth="xl" sx={{ mt: '50px' }}>
