@@ -1,3 +1,4 @@
+import DataProvider from "./Components/Context/DataProvider";
 import Courses from "./Components/Courses";
 import Hero from "./Components/Hero";
 import Navbar from "./Components/Navbar";
@@ -5,9 +6,12 @@ import Navbar from "./Components/Navbar";
 function App() {
   return (
     <div>
-      <Navbar />
-      <Hero />
-      <Courses />
+      <DataProvider>
+        <Navbar />
+        <Hero />
+        <Courses />
+      </DataProvider>
+
     </div>
   );
 }
