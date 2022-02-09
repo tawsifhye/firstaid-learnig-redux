@@ -14,7 +14,8 @@ const HeroLayout = ({ styling }) => {
                     height: '450px',
                     width: {
                         xs: '300px',
-                        lg: '450px'
+                        lg: '380px',
+                        xl: '450px'
                     },
                     backgroundColor: '#FFE4E0',
                     borderRadius: '50%',
