@@ -97,12 +97,42 @@ const LoginModal = ({ handleClose, open, registered, setRegistered }) => {
                             }}>
                                 {registered ? 'Need an account?' : 'Already Have Account?'} <Box component="span" onClick={registered ? () => setRegistered(false) : () => setRegistered(true)} sx={{ textDecoration: 'underline', cursor: 'pointer' }}>{registered ? 'Sign up.' : 'Sign In'}</Box>
                             </Typography>
+
+                            <Typography sx={{
+                                fontWeight: 600,
+                                fontSize: '12px',
+                                textAlign: 'center',
+                                textDecoration: 'underline',
+                                color: '#767676',
+                                mt: '10px'
+                            }}>
+                                Forgot your password?
+                            </Typography>
+                            <Typography sx={{
+                                fontWeight: 600,
+                                fontSize: '12px',
+                                textAlign: 'center',
+                                color: '#767676',
+                                mt: '10px'
+                            }}>
+                                By logging in, you agree to our
+                            </Typography>
+                            <Typography sx={{
+                                fontWeight: 600,
+                                fontSize: '12px',
+                                textAlign: 'center',
+                                textDecoration: 'underline',
+                                color: '#767676',
+                                mt: '10px'
+                            }}>
+                                Privacy Policy <span style={{ textDecoration: 'none' }}>and</span> Terms od Service.
+                            </Typography>
                         </Box>
                     </Box>
 
                 </Box>
             </Modal>
-        </div>
+        </div >
     );
 };
 
