@@ -11,7 +11,13 @@ const Courses = () => {
     }, [])
     return (
         <div>
-            <Container maxWidth="xl" sx={{ mt: '50px' }}>
+            <Container sx={{
+                mt: '50px',
+                maxWidth: {
+                    lg: 'lg',
+                    xl: 'xl'
+                }
+            }}>
                 <Tagline text={<div>Interacting First Aid Courses</div>} />
                 <Box>
                     <Content text="We are a company who is best known for offering awarding body accredited courses for anyone who wishes to take their professional life to the next level." />

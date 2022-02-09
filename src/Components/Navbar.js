@@ -78,7 +78,12 @@ const Navbar = () => {
             boxShadow: 'none',
             padding: '40px 0px'
         }}>
-            <Container maxWidth="xl">
+            <Container sx={{
+                maxWidth: {
+                    lg: 'lg',
+                    xl: 'xl'
+                }
+            }}>
                 <Toolbar disableGutters>
                     <Typography
                         variant="h6"
