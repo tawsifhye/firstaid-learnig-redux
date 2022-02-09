@@ -13,7 +13,7 @@ const Styles = {
         backgroundColor: '#FFF6F6',
         position: 'relative',
         overflow: 'hidden',
-        padding: '50px 20px'
+        padding: '50px 20px',
     }
 
 }
@@ -26,7 +26,7 @@ const Hero = () => {
 
                 <Box sx={{ width: '100%' }}>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3, }} >
-                        <Grid item xs={12} lg={6} sx={Styles.gridStyle}>
+                        <Grid item xs={12} lg={6} sx={{ ...Styles.gridStyle }}>
                             <Box sx={{ padding: '30px 10px' }}>
                                 <HeroLayout styling={{
                                     bottom: '-111px',
@@ -59,7 +59,7 @@ const Hero = () => {
 
                                 <Tagline text={<div>Trustable First Aid <br /> Courses Online</div>} fontSize='35px' />
 
-                                <Box component="span" sx={{ display: 'flex', alignItems: 'center', mt: { xs: 1, lg: 2 }, }}>
+                                <Box component="span" sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                                     <PlayArrowIcon
                                         sx={{
                                             color: '#EA2E10',
@@ -80,7 +80,6 @@ const Hero = () => {
                                 </Box>
 
                                 <Box sx={{
-
                                     position: 'absolute',
                                     top: '60px',
                                     right: {
