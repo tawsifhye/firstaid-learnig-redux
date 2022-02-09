@@ -11,7 +11,9 @@ const Styles = {
     navlink: {
         color: '#4A5074',
         fontWeight: 'bold',
-        fontSize: '20.175px',
+        fontSize: {
+            lg: '20.175px',
+        },
         textTransform: 'capitalize'
     },
     loginButton: {

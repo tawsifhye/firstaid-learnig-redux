@@ -6,7 +6,6 @@ const Styles = {
         fontWeight: 'bold',
         borderRadius: '11.21px',
         width: {
-            xs: '100px',
             md: '152.43px'
         },
         height: '67.25px'
