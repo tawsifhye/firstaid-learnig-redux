@@ -11,10 +11,10 @@ const Styles = {
         height: '67.25px'
     }
 }
-const PrimaryButton = ({ text }) => {
+const PrimaryButton = ({ text, onClick }) => {
     return (
         <div>
-            <Button variant="contained" color="error"
+            <Button onClick={onClick} variant="contained" color="error"
                 sx={Styles.loginButton}>
                 {text}
             </Button>

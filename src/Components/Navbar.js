@@ -2,10 +2,10 @@ import { AppBar, Button, Container, IconButton, InputAdornment, Menu, TextField,
 import { Box } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../images/logo.png'
 import PrimaryButton from './shared/PrimaryButton';
-
+import LoginModal from './LoginModal';
 
 const Styles = {
     navlink: {
@@ -24,13 +24,44 @@ const Styles = {
             md: '152.43px'
         },
         height: '67.25px'
-    }
+    },
+    /* modal: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '400px',
+        height: '665px',
+        backgroundColor: 'background.paper',
+        background: '#FFFFFF',
+        borderRadius: '2px',
+        boxShadow: 24,
+        p: 4,
+    },
+    form: {
+        width: '100%',
+        border: '1px solid #767676',
+        boxSizing: 'border-box',
+        borderRadius: '5px'
+
+    },
+    label: {
+        fontWeight: 600,
+        fontSize: '12px',
+        color: '#494949',
+        mb: 1,
+    } */
 }
 
 
 const Navbar = () => {
 
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [registered, setRegistered] = useState(true)
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const [anchorElNav, setAnchorElNav] = useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -170,11 +201,13 @@ const Navbar = () => {
                         </Box>
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
-                        <PrimaryButton text="Login" />
+
+                        <PrimaryButton onClick={handleOpen} text="Login" />
+                        <LoginModal handleClose={handleClose} open={open} registered={registered} setRegistered={setRegistered} />
                     </Box>
                 </Toolbar>
-            </Container>
-        </AppBar>
+            </Container >
+        </AppBar >
     );
 };
 
