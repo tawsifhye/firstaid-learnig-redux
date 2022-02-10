@@ -20,7 +20,7 @@ const Courses = () => {
             .then(data => data.json())
             .then(data => setCourseList(data))
     }, []);
-    console.log(courseList);
+    // console.log(courseList);
     return (
         <div>
             <Container sx={{

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/system';
-import { Container } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import Tagline from './shared/Tagline';
 import Content from './shared/Content';
-import CourseCard from './CourseCard';
+import SharedCard from './shared/SharedCard';
+
 
 
 
@@ -15,7 +16,7 @@ const FreeResources = () => {
             .then(res => res.json())
             .then(data => setFreeResources(data))
     }, [])
-
+    console.log(freeResources)
     return (
         <Box sx={{ mt: '20px', backgroundColor: '#FFF6F6', padding: '30px 10px' }}>
             <Container sx={{
@@ -28,8 +29,15 @@ const FreeResources = () => {
                 <Tagline text={<div>Free Resources You’ll Enjoy</div>} />
                 <br />
                 <Content text={<div>We are a company who is best known for offering awarding body accredited courses for anyone who wishes to <br /> take their professional life to the next level.</div>} />
-                <Box>
-                </Box>
+                <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                    {
+                        freeResources.map(resource => (
+                            <Grid item xs={2} sm={4} md={3} xl={3} >
+                                <SharedCard key={resource.id} resource={resource} />
+                            </Grid>
+                        ))
+                    }
+                </Grid>
             </Container>
         </Box>
     );

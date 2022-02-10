@@ -8,7 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StarIcon from '@mui/icons-material/Star';
 const CourseCard = ({ course }) => {
     const { id, title, coverImage, enrolledStudents, rating, } = course;
-    console.log(course);
+    // console.log(course);
     return (
         <Box sx={{
             my: '30px',
