@@ -1,55 +1,19 @@
-import { Button, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import { useContext } from "react";
-import Slider from 'react-slick';
 import { DataContext } from './Context/DataProvider';
 // import '../Components/GlobalCss.css'
 import CourseCard from './CourseCard';
+import Carousel from './shared/Carousel';
 import CarouselButton from './shared/CarouselButton';
 import Content from './shared/Content';
 import Tagline from './shared/Tagline'
 
 
 
-
-
-const settings = {
-    dots: false,
-    infinite: true,
-    speed: 100,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-        {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
-            }
-        },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-            }
-        }
-    ]
-};
 const Courses = () => {
-    const slider = React.useRef(null);
+    const sliderRef = React.useRef(null);
     const [courseList, setCourseList] = useContext(DataContext)
     useEffect(() => {
         fetch('courselist.json')
@@ -70,16 +34,24 @@ const Courses = () => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Content text={<div>We are a company who is best known for offering awarding body accredited courses for anyone who wishes to <br /> take their professional life to the next level.</div>} />
                     <Box >
-                        <CarouselButton slider={slider} />
+                        <CarouselButton sliderRef={sliderRef} />
                     </Box>
                 </Box>
 
                 <Box sx={{ backgroundColor: '#FEF9F7', mt: '30px', padding: '10px' }}>
-                    <Slider ref={slider} {...settings}>
+                    <Carousel sliderRef={sliderRef}
+                        content={courseList.map(course => (
+                            <CourseCard key={course.id} course={course} />
+
+                        ))}
+                    />
+
+
+                    {/* <Slider ref={slider} {...settings}>
                         {courseList.map(course => (
                             <CourseCard key={course.id} course={course} />
                         ))}
-                    </Slider>
+                    </Slider> */}
                 </Box>
 
 

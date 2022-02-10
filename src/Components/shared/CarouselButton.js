@@ -15,12 +15,12 @@ const Styles = {
     }
 }
 
-const CarouselButton = ({ slider }) => {
+const CarouselButton = ({ sliderRef }) => {
 
     return (
         <div>
-            <ArrowBackIcon sx={{ ...Styles.nextPrev, mr: '10px' }} onClick={() => slider?.current?.slickPrev()} />
-            <ArrowForwardIcon sx={Styles.nextPrev} onClick={() => slider?.current?.slickNext()} />
+            <ArrowBackIcon sx={{ ...Styles.nextPrev, mr: '10px' }} onClick={() => sliderRef?.current?.slickPrev()} />
+            <ArrowForwardIcon sx={Styles.nextPrev} onClick={() => sliderRef?.current?.slickNext()} />
         </div>
     );
 };
