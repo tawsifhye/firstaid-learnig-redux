@@ -151,7 +151,7 @@ const Navbar = () => {
                         >
                             <img src={logo} style={{ width: '75%' }} alt="" />
                         </Typography>
-                        <TextField id="outlined-basic" label="Search" variant="outlined" InputProps={{
+                        <TextField id="outlined-basic" variant="outlined" placeholder="Search" InputProps={{
                             startAdornment: (
                                 <InputAdornment>
                                     <IconButton>
@@ -160,6 +160,7 @@ const Navbar = () => {
                                 </InputAdornment>
                             )
                         }}
+
                             sx={{
                                 mt: 2,
                                 display: {
@@ -179,7 +180,7 @@ const Navbar = () => {
                             md: 'flex'
                         }
                     }}>
-                        <TextField id="outlined-basic" label="Search" variant="outlined" InputProps={{
+                        <TextField id="outlined-basic" placeholder="Search" variant="outlined" InputProps={{
                             startAdornment: (
                                 <InputAdornment>
                                     <IconButton>
