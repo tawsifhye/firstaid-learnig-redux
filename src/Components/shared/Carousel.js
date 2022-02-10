@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 
 const settings = {
+    arrows: false,
     dots: false,
     infinite: true,
     speed: 100,

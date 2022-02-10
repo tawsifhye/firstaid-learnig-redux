@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1",
+        "title": "Free Courses",
+        "icon": "assets/webinar.png"
+    },
+    {
+        "id": "2",
+        "title": "Free Quizzes",
+        "icon": "assets/book.png"
+    },
+    {
+        "id": "3",
+        "title": "Free CV Templates",
+        "icon": "assets/resume.png"
+    },
+    {
+        "id": "4",
+        "title": "Free Courses",
+        "icon": "assets/webinar.png"
+    }
+]
