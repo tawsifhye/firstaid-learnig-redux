@@ -13,7 +13,6 @@ const CourseCard = ({ course }) => {
         <Box sx={{
             my: '30px',
             padding: '10px',
-            mr: '20px',
             background: '#FFFFFF',
             boxShadow: '0px 45.799px 106.864px rgba(234, 46, 16, 0.06)',
             borderRadius: '19.0829px'

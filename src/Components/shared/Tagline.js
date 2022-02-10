@@ -8,7 +8,7 @@ const TagLine = ({ fontSize, fontWeight, text }) => {
                 sx={{
                     fontFamily: 'Circular Std',
                     fontStyle: 'normal',
-                    fontWeight: 900 || { fontWeight },
+                    fontWeight: { fontWeight } || 900,
                     fontSize: {
                         xs: '20px',
                         lg: fontSize || '55px',

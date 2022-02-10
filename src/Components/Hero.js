@@ -8,6 +8,7 @@ import quiz_grid from '../images/grid3.png'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import Tagline from './shared/Tagline';
+import SharedBox from './shared/SharedBox';
 const Styles = {
     gridStyle: {
         backgroundColor: '#FFF6F6',
@@ -54,7 +55,8 @@ const Hero = () => {
 
                         </Grid>
                         <Grid item xs={12} lg={6} >
-                            <Box sx={Styles.gridStyle}>
+                            <SharedBox HeroLayout={HeroLayout} HeroImgSrc={first_aid_box} text={<div>Trustable First Aid <br /> Courses Online</div>} fontSize='35px' />
+                            {/* <Box sx={Styles.gridStyle}>
                                 <HeroLayout styling={{
                                     bottom: '-103px',
                                     right: '-127px',
@@ -100,12 +102,12 @@ const Hero = () => {
                                         }} />
                                 </Box>
 
-                            </Box>
+                            </Box> */}
                             <Box sx={{ mt: 3, ...Styles.gridStyle }}>
                                 <HeroLayout styling={{
                                     bottom: '-103px',
                                     right: '-127px',
-                                }} text={<div>Awesome Quizzes <br /> you can explore</div>}
+                                }}
                                 />
                                 <Tagline text={<div>Awesome Quizzes <br /> you can explore</div>} fontSize='35px' />
                                 <Box component="span" sx={{ display: 'flex', alignItems: 'center', mt: 2, }}>
