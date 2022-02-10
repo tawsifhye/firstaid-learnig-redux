@@ -31,7 +31,7 @@ const Courses = () => {
                 }
             }}>
                 <Tagline text={<div>Interacting First Aid Courses</div>} />
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: { xs: 'column', md: 'row' } }}>
                     <Content text={<div>We are a company who is best known for offering awarding body accredited courses for anyone who wishes to <br /> take their professional life to the next level.</div>} />
                     <Box >
                         <CarouselButton sliderRef={sliderRef} />
@@ -42,7 +42,6 @@ const Courses = () => {
                     <Carousel sliderRef={sliderRef}
                         content={courseList.map(course => (
                             <CourseCard key={course.id} course={course} />
-
                         ))}
                     />
 

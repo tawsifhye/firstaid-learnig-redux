@@ -22,7 +22,7 @@ const CourseCard = ({ course }) => {
             <Box position='relative'>
 
                 <Typography sx={{
-                    padding: '10px 20px',
+                    padding: '5px 10px',
                     position: 'absolute',
                     bottom: '5px',
                     right: '5px',
