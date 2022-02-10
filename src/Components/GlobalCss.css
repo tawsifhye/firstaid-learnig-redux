@@ -1,9 +1,11 @@
   /* the slides */
   .slick-slide {
-      margin-left: 27px;
+      margin-right: 5px;
+      /* padding-left: 27px; */
   }
 
   /* the parent */
   .slick-list {
       margin-left: -27px;
+      overflow-wrap: break-word;
   }

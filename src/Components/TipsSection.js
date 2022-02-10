@@ -9,28 +9,28 @@ import TagLine from './shared/Tagline';
 const tipsData = [
     {
         id: "1",
-        title: "Tips 2",
-        img: "https://images.pexels.com/photos/5942997/pexels-photo-5942997.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        title: "Trustable First Aid Courses Online 1",
+        img: "https://images.pexels.com/photos/5905479/pexels-photo-5905479.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     },
     {
         id: "2",
-        title: "Tips 2",
-        img: "https://images.pexels.com/photos/5942997/pexels-photo-5942997.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        title: "Trustable First Aid Courses Online 2",
+        img: "https://images.pexels.com/photos/5905479/pexels-photo-5905479.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     },
     {
         id: "3",
-        title: "Tips 3",
-        img: "https://images.pexels.com/photos/5942997/pexels-photo-5942997.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        title: "Trustable First Aid Courses Online 3",
+        img: "https://images.pexels.com/photos/5905479/pexels-photo-5905479.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     },
     {
         id: "4",
-        title: "Tips 4",
-        img: "https://images.pexels.com/photos/5942997/pexels-photo-5942997.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        title: "Trustable First Aid Courses Online 4",
+        img: "https://images.pexels.com/photos/5905479/pexels-photo-5905479.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     },
     {
         id: "5",
-        title: "Tips 5",
-        img: "https://images.pexels.com/photos/5942997/pexels-photo-5942997.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        title: "Trustable First Aid Courses Online 5",
+        img: "https://images.pexels.com/photos/5905479/pexels-photo-5905479.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     }
 ]
 
@@ -54,10 +54,10 @@ const TipsSection = () => {
                     </Box>
                 </Box>
 
-                <Box sx={{ backgroundColor: '#FEF9F7', mt: '30px', padding: '10px' }}>
+                <Box sx={{ mt: '30px', padding: '10px' }}>
                     <Carousel sliderRef={sliderRef}
                         content={tipsData.map(data => (
-                            <SharedBox key={data.id} course={data} />
+                            <SharedBox key={data.id} tips={data} />
                         ))}
                     />
 

@@ -20,8 +20,8 @@ const HeroLayout = ({ styling }) => {
                     backgroundColor: '#FFE4E0',
                     borderRadius: '50%',
                     position: 'absolute',
-                    bottom: styling.bottom,
-                    right: styling.right,
+                    bottom: styling?.bottom,
+                    right: styling?.right,
 
                 }}
             >

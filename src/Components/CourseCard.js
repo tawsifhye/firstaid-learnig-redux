@@ -12,6 +12,7 @@ const CourseCard = ({ course }) => {
     return (
         <Box sx={{
             my: '30px',
+            mr: '10px',
             padding: '10px',
             background: '#FFFFFF',
             boxShadow: '0px 45.799px 106.864px rgba(234, 46, 16, 0.06)',
@@ -19,7 +20,6 @@ const CourseCard = ({ course }) => {
         }}>
 
             <Box position='relative'>
-
                 <Typography sx={{
                     padding: '5px 10px',
                     position: 'absolute',

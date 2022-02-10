@@ -14,6 +14,7 @@ function App() {
         <Courses />
         <FreeResources />
         <TipsSection />
+        {/* <Courses /> */}
       </DataProvider>
 
     </div>

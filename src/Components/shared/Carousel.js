@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import '../GlobalCss.css'
+// import '../GlobalCss.css'
 
 const Carousel = ({ content, sliderRef, slidesToShow }) => {
     const settings = {
