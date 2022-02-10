@@ -6,24 +6,13 @@ import Slider from 'react-slick';
 import { DataContext } from './Context/DataProvider';
 // import '../Components/GlobalCss.css'
 import CourseCard from './CourseCard';
+import CarouselButton from './shared/CarouselButton';
 import Content from './shared/Content';
 import Tagline from './shared/Tagline'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
-const Styles = {
-    nextPrev: {
-        background: '#FFF1EF',
-        borderRadius: '6px',
-        padding: '20px',
-        color: '#EA2E10',
-        '&:active': {
-            color: '#FFFFFF',
-            background: '#EA2E10'
-        }
-    }
-}
+
+
 
 const settings = {
     dots: false,
@@ -60,9 +49,7 @@ const settings = {
     ]
 };
 const Courses = () => {
-
     const slider = React.useRef(null);
-
     const [courseList, setCourseList] = useContext(DataContext)
     useEffect(() => {
         fetch('courselist.json')
@@ -83,10 +70,7 @@ const Courses = () => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Content text={<div>We are a company who is best known for offering awarding body accredited courses for anyone who wishes to <br /> take their professional life to the next level.</div>} />
                     <Box >
-                        {/* <button onClick={() => slider?.current?.slickPrev()}>Prev</button>
-                        <button onClick={() => slider?.current?.slickNext()}>Next</button> */}
-                        <ArrowBackIcon sx={{ ...Styles.nextPrev, mr: '10px' }} onClick={() => slider?.current?.slickPrev()} />
-                        <ArrowForwardIcon sx={Styles.nextPrev} onClick={() => slider?.current?.slickNext()} />
+                        <CarouselButton slider={slider} />
                     </Box>
                 </Box>
 
