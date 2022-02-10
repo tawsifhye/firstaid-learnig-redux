@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, Typography } from '@mui/material';
+import { Button, Card, CardContent } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import TagLine from './Tagline';
