@@ -3,9 +3,9 @@ import { Box } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useState } from 'react';
-import logo from '../images/logo.png'
-import PrimaryButton from './shared/PrimaryButton';
-import LoginModal from './LoginModal';
+import logo from '../../images/logo.png'
+import PrimaryButton from './PrimaryButton';
+import LoginModal from '../Home/LoginModal';
 
 const Styles = {
     navlink: {

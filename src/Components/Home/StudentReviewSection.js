@@ -1,10 +1,10 @@
 import { Box, Card, Container, Typography } from '@mui/material';
 import React from 'react';
-import Tagline from './shared/Tagline';
-import quote from '../images/quote.png'
-import dot_bg from '../images/dot-bg.png'
-import Content from './shared/Content';
-import Carousel from './shared/Carousel';
+import Tagline from '../shared/Tagline';
+import quote from '../../images/quote.png'
+import dot_bg from '../../images/dot-bg.png'
+import Content from '../shared/Content';
+import Carousel from '../shared/Carousel';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 const reviews = [
     {
@@ -45,7 +45,7 @@ const StudentReviewSection = () => {
                     <Carousel sliderRef={sliderRef} slidesToShow={1} slidesToScroll={1}
 
                         content={reviews.map(data => (
-                            <Card id={data?.id} sx={{
+                            <Card id={data.id} sx={{
                                 maxWidth: 400,
                                 minWidth: 275,
                                 boxShadow: '0px 18px 52.8537px rgba(234, 46, 16, 0.09)',
@@ -93,6 +93,17 @@ const StudentReviewSection = () => {
                         sx={{
                             bottom: '50px',
                             left: '170px',
+                            width: '200px',
+                            position: 'absolute',
+                            zIndex: -1
+                        }}
+                        src={dot_bg}
+                    />
+                    <Box
+                        component="img"
+                        sx={{
+                            top: '90px',
+                            right: '190px',
                             width: '200px',
                             position: 'absolute',
                             zIndex: -1

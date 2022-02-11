@@ -2,7 +2,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import PeopleIcon from '@mui/icons-material/People';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
-import TagLine from './shared/Tagline';
+import TagLine from '../shared/Tagline';
 import { Button, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StarIcon from '@mui/icons-material/Star';

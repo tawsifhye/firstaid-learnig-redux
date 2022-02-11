@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 import { Container, Grid } from '@mui/material';
-import Tagline from './shared/Tagline';
-import Content from './shared/Content';
-import SharedCard from './shared/SharedCard';
+import Tagline from '../shared/Tagline';
+import Content from '../shared/Content';
+import SharedCard from '../shared/SharedCard';
 
 
 
@@ -31,8 +31,8 @@ const FreeResources = () => {
                 <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                     {
                         freeResources.map(resource => (
-                            <Grid item xs={2} sm={4} md={3} xl={3} >
-                                <SharedCard key={resource?.id} resource={resource} />
+                            <Grid key={resource?.id} item xs={2} sm={4} md={3} xl={3} >
+                                <SharedCard resource={resource} />
                             </Grid>
                         ))
                     }

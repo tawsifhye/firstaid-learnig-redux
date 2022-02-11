@@ -1,10 +1,10 @@
 import { Box, Container } from '@mui/material';
 import React from 'react';
-import Carousel from './shared/Carousel';
-import CarouselButton from './shared/CarouselButton';
-import Content from './shared/Content';
-import SharedBox from './shared/SharedBox';
-import TagLine from './shared/Tagline';
+import Carousel from '../shared/Carousel';
+import CarouselButton from '../shared/CarouselButton';
+import Content from '../shared/Content';
+import SharedBox from '../shared/SharedBox';
+import TagLine from '../shared/Tagline';
 
 const tipsData = [
     {

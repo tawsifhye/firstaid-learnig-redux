@@ -1,13 +1,13 @@
 import { Box, Container, Grid, Link, } from '@mui/material';
 import React from 'react';
-import HeroLayout from './shared/HeroLayout';
-import PrimaryButton from './shared/PrimaryButton';
-import doctorImage from '../images/doctors.png'
-import first_aid_box from '../images/first-aid-box.png'
-import quiz_grid from '../images/grid3.png'
+import HeroLayout from '../shared/HeroLayout';
+import PrimaryButton from '../shared/PrimaryButton';
+import doctorImage from '../../images/doctors.png'
+import first_aid_box from '../../images/first-aid-box.png'
+import quiz_grid from '../../images/grid3.png'
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import Tagline from './shared/Tagline';
-import SharedBox from './shared/SharedBox';
+import Tagline from '../shared/Tagline';
+import SharedBox from '../shared/SharedBox';
 const Styles = {
     gridStyle: {
         backgroundColor: '#FFF6F6',

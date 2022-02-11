@@ -1,8 +1,8 @@
 import { Box, Modal, TextField, Typography } from '@mui/material';
 import React from 'react';
-import AuthenticationButton from './shared/AuthenticationButton';
-import google_icon from '../images/google-icon.png';
-import facebook_icon from '../images/facebook-icon.png';
+import AuthenticationButton from '../shared/AuthenticationButton';
+import google_icon from '../../images/google-icon.png';
+import facebook_icon from '../../images/facebook-icon.png';
 import CloseIcon from '@mui/icons-material/Close';
 
 const Styles = {

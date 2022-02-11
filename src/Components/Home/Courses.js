@@ -2,13 +2,13 @@ import { Container } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import { useContext } from "react";
-import { DataContext } from '../Context/DataProvider';
+import { DataContext } from '../../Context/DataProvider';
 // import '../Components/GlobalCss.css'
 import CourseCard from './CourseCard';
-import Carousel from './shared/Carousel';
-import CarouselButton from './shared/CarouselButton';
-import Content from './shared/Content';
-import Tagline from './shared/Tagline'
+import Carousel from '../shared/Carousel';
+import CarouselButton from '../shared/CarouselButton';
+import Content from '../shared/Content';
+import Tagline from '../shared/Tagline'
 
 
 
