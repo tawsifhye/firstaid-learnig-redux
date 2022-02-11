@@ -60,13 +60,6 @@ const TipsSection = () => {
                             <SharedBox key={data.id} tips={data} />
                         ))}
                     />
-
-                    {/* <SharedBox /> */}
-                    {/* <Slider ref={slider} {...settings}>
-                        {courseList.map(course => (
-                            <CourseCard key={course.id} course={course} />
-                        ))}
-                    </Slider> */}
                 </Box>
 
 

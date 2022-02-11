@@ -16,7 +16,6 @@ const FreeResources = () => {
             .then(res => res.json())
             .then(data => setFreeResources(data))
     }, [])
-    console.log(freeResources)
     return (
         <Box sx={{ mt: '20px', backgroundColor: '#FFF6F6', padding: '30px 10px' }}>
             <Container sx={{

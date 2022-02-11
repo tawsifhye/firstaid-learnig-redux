@@ -1,4 +1,4 @@
-import DataProvider from "./Components/Context/DataProvider";
+import DataProvider from "./Context/DataProvider";
 import Courses from "./Components/Courses";
 import FreeResources from "./Components/FreeResources";
 import Hero from "./Components/Hero";
