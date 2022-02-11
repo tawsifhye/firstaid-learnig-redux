@@ -29,31 +29,25 @@ const SharedBox = ({ HeroLayout, HeroImgSrc, text, fontSize, tips }) => {
                 fontSize: '35px'
             }} />}
 
-            {/* <Box
-                sx={{
 
-                    height: '450px',
-                    width: {
-                        xs: '300px',
-                        lg: '380px',
-                        xl: '450px'
+
+            {tips && <Box
+                component="img"
+                sx={{
+                    top: '-80px',
+                    right: {
+                        xs: '-120px',
+                        lg: '-180px',
+                        xl: '-250px'
                     },
+                    width: '100%',
+                    position: 'absolute',
+                    height: '400px',
                     borderRadius: '50%',
                 }}
-            >
+                src={tips?.img}
+            />}
 
-
-            </Box> */}
-
-            <img style={{
-                top: '-80px',
-                right: '-180px',
-                width: '100%',
-                position: 'absolute',
-                height: '400px',
-                borderRadius: '50%',
-                // display: 'inline-block'
-            }} src={tips?.img} alt="" />
 
             <TagLine text={text} fontSize={fontSize} />
 

@@ -55,7 +55,7 @@ const TipsSection = () => {
                 </Box>
 
                 <Box sx={{ mt: '30px', padding: '10px' }}>
-                    <Carousel sliderRef={sliderRef}
+                    <Carousel sliderRef={sliderRef} slidesToShow={3} slidesToScroll={3}
                         content={tipsData.map(data => (
                             <SharedBox key={data.id} tips={data} />
                         ))}

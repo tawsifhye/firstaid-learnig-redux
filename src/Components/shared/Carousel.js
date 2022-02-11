@@ -2,14 +2,15 @@ import React from 'react';
 import Slider from 'react-slick';
 // import '../GlobalCss.css'
 
-const Carousel = ({ content, sliderRef, slidesToShow }) => {
+const Carousel = ({ content, sliderRef, slidesToShow, slidesToScroll }) => {
+
     const settings = {
         arrows: false,
         dots: false,
         infinite: false,
         speed: 100,
         slidesToShow: slidesToShow || 4,
-        slidesToScroll: 4,
+        slidesToScroll: slidesToScroll || 4,
         initialSlide: 0,
         responsive: [
             {
