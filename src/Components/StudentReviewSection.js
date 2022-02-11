@@ -2,6 +2,7 @@ import { Box, Card, Container, Typography } from '@mui/material';
 import React from 'react';
 import Tagline from './shared/Tagline';
 import quote from '../images/quote.png'
+import dot_bg from '../images/dot-bg.png'
 import Content from './shared/Content';
 import Carousel from './shared/Carousel';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
@@ -37,8 +38,9 @@ const StudentReviewSection = () => {
             <Typography textAlign="center"> <Tagline text={<div>We Value Our Students, <br />Let’s Hear from them</div>} /> </Typography>
 
 
-            <Container>
-                <Box sx={{ mx: 'auto', textAlign: 'center', padding: '20px 10px' }}>
+            <Container position='relative'>
+
+                <Box sx={{ mx: 'auto', textAlign: 'center', padding: '20px 10px', position: 'relative', }}>
 
                     <Carousel sliderRef={sliderRef} slidesToShow={1} slidesToScroll={1}
 
@@ -54,6 +56,7 @@ const StudentReviewSection = () => {
                                 backgroundRepeat: 'no-repeat',
                                 backgroundPosition: 'center',
                                 marginTop: '50px',
+                                zIndex: 100
                             }}>
                                 <br /> <br />
                                 <Content text={data.review} fontSize='20px' />
@@ -83,6 +86,18 @@ const StudentReviewSection = () => {
                         }
                     }}
                         onClick={() => sliderRef?.current?.slickNext()}
+                    />
+
+                    <Box
+                        component="img"
+                        sx={{
+                            bottom: '50px',
+                            left: '170px',
+                            width: '200px',
+                            position: 'absolute',
+                            zIndex: -1
+                        }}
+                        src={dot_bg}
                     />
                 </Box>
             </Container>
