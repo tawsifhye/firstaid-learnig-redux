@@ -10,7 +10,7 @@ const SharedCard = ({ resource }) => {
             <Box sx={{ backgroundColor: '#FDE3E0', width: '60px', borderRadius: '50%', padding: '40px', mx: 'auto' }}>
                 <img style={{ width: '50px', }} src={resource.icon} alt="" />
             </Box>
-            <CardContent marginTop="20px">
+            <CardContent sx={{ mt: '20px' }}>
                 <TagLine text={resource.title} fontWeight={500} fontSize='20px' />
                 <Button variant="outlined" sx={{
                     width: '100%',

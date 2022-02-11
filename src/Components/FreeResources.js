@@ -32,7 +32,7 @@ const FreeResources = () => {
                     {
                         freeResources.map(resource => (
                             <Grid item xs={2} sm={4} md={3} xl={3} >
-                                <SharedCard key={resource.id} resource={resource} />
+                                <SharedCard key={resource?.id} resource={resource} />
                             </Grid>
                         ))
                     }

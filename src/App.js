@@ -4,6 +4,7 @@ import FreeResources from "./Components/FreeResources";
 import Hero from "./Components/Hero";
 import Navbar from "./Components/Navbar";
 import TipsSection from "./Components/TipsSection";
+import StudentReviewSection from "./Components/StudentReviewSection";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Courses />
         <FreeResources />
         <TipsSection />
-        {/* <Courses /> */}
+        <StudentReviewSection />
+        <TipsSection />
       </DataProvider>
 
     </div>
