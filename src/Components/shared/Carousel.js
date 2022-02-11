@@ -2,16 +2,18 @@ import React from 'react';
 import Slider from 'react-slick';
 // import '../GlobalCss.css'
 
-const Carousel = ({ content, sliderRef, slidesToShow, slidesToScroll }) => {
+const Carousel = ({ content, sliderRef, slidesToShow, slidesToScroll, arrows, dots, center }) => {
 
     const settings = {
-        arrows: false,
-        dots: false,
+        arrows: arrows || false,
+        dots: dots || false,
         infinite: false,
         speed: 100,
         slidesToShow: slidesToShow || 4,
         slidesToScroll: slidesToScroll || 4,
-        initialSlide: 0,
+        centerMode: true,
+        initialSlide: 1,
+        className: center || '',
         responsive: [
             {
                 breakpoint: 1024,

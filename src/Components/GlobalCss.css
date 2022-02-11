@@ -1,11 +1,14 @@
   /* the slides */
-  .slick-slide {
+  /*  .slick-slide {
       margin-right: 5px;
-      /* padding-left: 27px; */
-  }
-
+      /* padding-left: 27px;
+  } */
   /* the parent */
-  .slick-list {
+  /*  .slick-list {
       margin-left: -27px;
       overflow-wrap: break-word;
-  }
+  } */
+  /* 
+  .slick-active {
+      transform: scale(1.5);
+  } */

@@ -3,6 +3,7 @@ import Courses from './Courses';
 import FreeResources from './FreeResources';
 import Hero from './Hero';
 import StudentReviewSection from './StudentReviewSection';
+import LatestNews from './LatestNews';
 import TipsSection from './TipsSection';
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
             <FreeResources />
             <TipsSection />
             <StudentReviewSection />
+            <LatestNews />
         </div>
     );
 };
