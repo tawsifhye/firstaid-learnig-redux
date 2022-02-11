@@ -11,7 +11,6 @@ const Carousel = ({ content, sliderRef, slidesToShow, slidesToScroll, arrows, do
         speed: 100,
         slidesToShow: slidesToShow || 4,
         slidesToScroll: slidesToScroll || 4,
-        centerMode: true,
         initialSlide: 1,
         className: center || '',
         responsive: [
