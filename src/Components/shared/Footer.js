@@ -1,10 +1,12 @@
 import { Box, Container, Grid, Link, TextField, Typography } from '@mui/material';
+
 import React from 'react';
-import fb_icon from '../../images/fb-icon.png'
-import linkedin_icon from '../../images/linkedin-icon.png';
-import twitter_icon from '../../images/twitter-icon.png';
+
+import { makeStyles } from '@material-ui/core/styles';
+
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import PrimaryButton from './PrimaryButton';
+import { useTheme } from '@mui/system';
 
 
 const Style = {
@@ -33,11 +35,24 @@ const Style = {
         textDecoration: 'none',
         color: 'white',
         textAlign: 'left',
-        marginBottom: '10px'
+
     }
 }
 
 const Footer = () => {
+    const theme = useTheme();
+
+    const useStyle = makeStyles({
+        placeHolder: {
+            'input': {
+                '&::placeholder': {
+                    color: '#BFBFBF !important'
+                }
+            }
+
+        }
+    })
+
     return (
         <Box sx={{ backgroundColor: '#291F1F', color: 'white' }}>
             <Container sx={{ xl: 'xl', lg: 'lg' }}>
@@ -103,11 +118,12 @@ const Footer = () => {
 
                     <Grid item xs={12} sm={6} md={3} sx={Style.gridStyle}>
                         <Typography sx={Style.linkTitle}>Contact Us</Typography>
-                        <TextField sx={{
+                        <TextField className={useStyle.placeHolder} sx={{
                             mb: 3,
                             border: '2px solid #C5C5C5',
                             boxSizing: 'border-box',
                             borderRadius: '8px',
+
                         }} fullWidth placeholder="Enter Your Number" id="fullWidth" />
                         <PrimaryButton text='Request a Callback' />
                     </Grid>
