@@ -12,7 +12,7 @@ const FreeResources = () => {
 
     const [freeResources, setFreeResources] = useState([]);
     useEffect(() => {
-        fetch('freeresources.json')
+        fetch('/freeresources.json')
             .then(res => res.json())
             .then(data => setFreeResources(data))
     }, [])

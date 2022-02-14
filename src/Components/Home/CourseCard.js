@@ -6,6 +6,7 @@ import TagLine from '../shared/Tagline';
 import { Button, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StarIcon from '@mui/icons-material/Star';
+import { Link } from 'react-router-dom';
 const CourseCard = ({ course }) => {
     const { id, title, coverImage, enrolledStudents, rating, } = course;
     // console.log(course);
@@ -35,7 +36,10 @@ const CourseCard = ({ course }) => {
                 </Typography>
                 <img style={{ width: '100%', marginBottom: '10px', borderRadius: '19.08px' }} src={coverImage} alt="" />
             </Box>
-            <TagLine text={<div>{title}</div>} fontSize="20px" />
+            <Link to={`/courseoverview/${id}`} sx={{ cursor: 'pointer' }}>
+                <TagLine text={<div>{title}</div>} fontSize="20px" />
+            </Link>
+
 
             <Box sx={{
                 mt: '30px',

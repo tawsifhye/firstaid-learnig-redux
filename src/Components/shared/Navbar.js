@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import logo from '../../images/logo.png'
 import PrimaryButton from './PrimaryButton';
 import LoginModal from '../Home/LoginModal';
+import { Link } from 'react-router-dom';
 
 const Styles = {
     navlink: {
@@ -150,6 +151,16 @@ const Navbar = () => {
                             justifyContent: 'space-between',
                             flexBasis: "500px"
                         }}>
+
+                            <Link to='/home' style={{ textDecoration: 'none' }}>
+                                <Button sx={Styles.navlink}>
+                                    Home
+                                </Button>
+                            </Link>
+
+
+
+
                             <Button href="#outlined-buttons" sx={Styles.navlink}>
                                 All Courses
                             </Button>
@@ -201,6 +212,9 @@ const Navbar = () => {
                                 display: 'flex',
                                 flexDirection: 'column'
                             }}>
+                                <Button href="#outlined-buttons" sx={Styles.navlink}>
+                                    Home
+                                </Button>
                                 <Button href="#outlined-buttons" sx={Styles.navlink}>
                                     All Courses
                                 </Button>

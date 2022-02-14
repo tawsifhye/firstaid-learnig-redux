@@ -16,7 +16,7 @@ const Courses = () => {
     const sliderRef = React.useRef(null);
     const [courseList, setCourseList] = useContext(DataContext);
     useEffect(() => {
-        fetch('courselist.json')
+        fetch('/courselist.json')
             .then(data => data.json())
             .then(data => setCourseList(data))
     }, []);

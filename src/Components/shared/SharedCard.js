@@ -1,10 +1,8 @@
 import { Button, Card, CardContent, Link } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
 import TagLine from './Tagline';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 const SharedCard = ({ resource }) => {
-
     return (
 
         <Card sx={{ maxWidth: 300, pt: '30px', mt: '20px' }}>
