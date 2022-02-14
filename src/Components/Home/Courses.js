@@ -14,7 +14,7 @@ import Tagline from '../shared/Tagline'
 
 const Courses = () => {
     const sliderRef = React.useRef(null);
-    const [courseList, setCourseList] = useContext(DataContext)
+    const [courseList, setCourseList] = useContext(DataContext);
     useEffect(() => {
         fetch('courselist.json')
             .then(data => data.json())
