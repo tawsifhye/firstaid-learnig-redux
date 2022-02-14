@@ -35,7 +35,7 @@ const Style = {
         textDecoration: 'none',
         color: 'white',
         textAlign: 'left',
-
+        marginBottom: '10px'
     }
 }
 
