@@ -15,7 +15,6 @@ const Home = () => {
             <TipsSection />
             <StudentReviewSection />
             <LatestNews />
-            <TipsSection />
         </div>
     );
 };

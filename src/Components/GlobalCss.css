@@ -18,3 +18,89 @@
       -moz-transform: scale(1.25);
       transform: scale(1.5);
   }
+
+
+
+
+
+  /* .slick-dots li {
+      margin: 0 0.25rem;
+  } */
+
+  /* .latest-news-dots button {
+      display: flex;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background-color: #FFD9D2;
+  }
+
+  .latest-news-dots li.slick-active button {
+      background-color: #EA2E10;
+  }
+ */
+
+
+  /* Dots */
+
+
+  .latest-news-dots {
+      margin: 0 auto;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+  }
+
+  .latest-news-dots li {
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin: 20px 5px;
+      padding: 0;
+
+      cursor: pointer;
+  }
+
+  .latest-news-dots li button {
+      font-size: 0;
+      line-height: 0;
+
+      display: block;
+
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+
+      cursor: pointer;
+
+      color: transparent;
+      border: 0;
+      outline: none;
+      background: transparent;
+  }
+
+  .latest-news-dots li button:before {
+      font-family: 'slick';
+      font-size: 20px;
+      line-height: 20px;
+
+      width: 16px;
+      height: 16px;
+
+      content: '•';
+      text-align: center;
+      color: #FFD9D2;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+  }
+
+  .latest-news-dots li.slick-active button:before {
+      color: #EA2E10;
+      ;
+  }

@@ -8,19 +8,23 @@ import '../GlobalCss.css';
 
 
 const settings = {
-    className: "center",
+    dotsClass: 'latest-news-dots',
+    className: 'center',
+    arrows: false,
+    dots: true,
+    infinite: false,
     centerMode: true,
-    infinite: true,
     centerPadding: "60px",
     slidesToShow: 3,
     slidesToScroll: 1,
+    initialSlide: 1,
     speed: 500
 };
 
 const LatestNews = () => {
     const n = 5;
     return (
-        <Box sx={{ backgroundColor: '#FFF6F6' }} >
+        <Box sx={{ backgroundColor: '#FFF6F6', padding: '50px 0' }} >
             <Typography sx={{ textAlign: 'center', padding: '50px 0' }} ><TagLine text='Our Latest News' /></Typography>
             <Container>
 
@@ -48,11 +52,11 @@ const LatestNews = () => {
                     </Card>
                 )
                 )} */}
-                <Box>
+                <Box Box >
                     <Slider {...settings}>
                         {[...Array(n)].map((elementInArray, index) => (
 
-                            <Card sx={{ minWidth: 275 }} key={n}>
+                            <Card sx={{ minWidth: 275, marginRight: '20px', }} key={n}>
                                 <CardContent>
                                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                                         Word of the Day{index}
@@ -79,8 +83,8 @@ const LatestNews = () => {
 
 
 
-            </Container>
-        </Box>
+            </Container >
+        </Box >
     );
 };
 
