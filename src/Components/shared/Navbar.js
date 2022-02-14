@@ -94,52 +94,7 @@ const Navbar = () => {
                         <img src={logo} alt="" />
                     </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                            sx={{ color: 'black' }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                            <Box sx={{
-                                display: 'flex',
-                                flexDirection: 'column'
-                            }}>
-                                <Button href="#outlined-buttons" sx={Styles.navlink}>
-                                    All Courses
-                                </Button>
-                                <Button href="#outlined-buttons" sx={Styles.navlink}>
-                                    Student ID Card
-                                </Button>
-                                <Button href="#outlined-buttons" sx={Styles.navlink}>
-                                    Contact
-                                </Button>
-                            </Box>
-                        </Menu>
-                    </Box>
+
 
 
                     <Box>
@@ -199,7 +154,7 @@ const Navbar = () => {
                                 All Courses
                             </Button>
                             <Button href="#outlined-buttons" sx={Styles.navlink}>
-                                Student ID Card
+                                Blogs
                             </Button>
                             <Button href="#outlined-buttons" sx={Styles.navlink}>
                                 Contact
@@ -210,6 +165,53 @@ const Navbar = () => {
 
                         <PrimaryButton onClick={handleOpen} text="Login" />
                         <LoginModal handleClose={handleClose} open={open} registered={registered} setRegistered={setRegistered} />
+                    </Box>
+
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                            sx={{ color: 'black' }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: { xs: 'block', md: 'none' },
+                            }}
+                        >
+                            <Box sx={{
+                                display: 'flex',
+                                flexDirection: 'column'
+                            }}>
+                                <Button href="#outlined-buttons" sx={Styles.navlink}>
+                                    All Courses
+                                </Button>
+                                <Button href="#outlined-buttons" sx={Styles.navlink}>
+                                    Blogs
+                                </Button>
+                                <Button href="#outlined-buttons" sx={Styles.navlink}>
+                                    Contact
+                                </Button>
+                            </Box>
+                        </Menu>
                     </Box>
                 </Toolbar>
             </Container >

@@ -2,7 +2,8 @@
     {
         "id": "1",
         "title": "Free Courses",
-        "icon": "assets/webinar.png"
+        "icon": "assets/webinar.png",
+        "link": "https://www.youtube.com/watch?v=WHaHmvzVU3Y"
     },
     {
         "id": "2",
@@ -12,11 +13,13 @@
     {
         "id": "3",
         "title": "Free CV Templates",
-        "icon": "assets/resume.png"
+        "icon": "assets/resume.png",
+        "link": "https://www.youtube.com/watch?v=J-4Fv8nq1iA"
     },
     {
         "id": "4",
         "title": "Free Courses",
-        "icon": "assets/webinar.png"
+        "icon": "assets/webinar.png",
+        "link": "https://www.youtube.com/watch?v=WHaHmvzVU3Y"
     }
 ]
