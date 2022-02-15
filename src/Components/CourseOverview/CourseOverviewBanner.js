@@ -93,7 +93,10 @@ const CourseOverviewBanner = ({ course }) => {
                             <Grid item xs={2} sm={4} md={4} sx={Styles.gridStyle}>
                                 <Box component='img' src={course?.coverImage} sx={{
                                     width: '100%',
-                                    marginTop: '-200px'
+                                    marginTop: {
+                                        xs: '0',
+                                        md: '-200px'
+                                    }
                                 }} />
                             </Grid>
                             <Grid item xs={2} sm={4} md={4} sx={Styles.gridStyle}>
