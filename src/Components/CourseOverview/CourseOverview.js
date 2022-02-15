@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { DataContext } from '../../Context/DataProvider';
 import Footer from '../shared/Footer';
 import Navbar from '../shared/Navbar';
+import AboutCourse from './AboutCourse';
 import CourseOverviewBanner from './CourseOverviewBanner';
 
 const CourseOverview = () => {
@@ -27,6 +28,7 @@ const CourseOverview = () => {
         <Box>
             <Navbar />
             <CourseOverviewBanner course={singleCourse} />
+            <AboutCourse course={singleCourse} />
 
 
             {/* <Footer /> */}
