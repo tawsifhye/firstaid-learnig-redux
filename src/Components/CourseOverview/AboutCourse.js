@@ -8,7 +8,7 @@ const AboutCourse = ({ course }) => {
             <Container>
                 <Tagline text={course.title} />
                 <br /> <br />
-                {course.overview}
+                {course?.overview}
             </Container>
         </Box>
     );
