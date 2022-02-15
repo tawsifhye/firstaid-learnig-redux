@@ -7,6 +7,8 @@ import logo from '../../images/logo.png'
 import PrimaryButton from './PrimaryButton';
 import LoginModal from '../Home/LoginModal';
 import { Link } from 'react-router-dom';
+import { FaShoppingCart } from "react-icons/fa";
+
 
 const Styles = {
     navlink: {
@@ -170,6 +172,14 @@ const Navbar = () => {
                             <Button href="#outlined-buttons" sx={Styles.navlink}>
                                 Contact
                             </Button>
+
+                            <Button sx={Styles.navlink}>
+                                <Link to='/home' style={{ textDecoration: 'none' }}>
+                                    < FaShoppingCart style={Styles.navlink} />
+                                </Link>
+                            </Button>
+
+
                         </Box>
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
@@ -212,9 +222,11 @@ const Navbar = () => {
                                 display: 'flex',
                                 flexDirection: 'column'
                             }}>
-                                <Button href="#outlined-buttons" sx={Styles.navlink}>
-                                    Home
-                                </Button>
+                                <Link to='/home' style={{ textDecoration: 'none' }}>
+                                    <Button sx={Styles.navlink}>
+                                        Home
+                                    </Button>
+                                </Link>
                                 <Button href="#outlined-buttons" sx={Styles.navlink}>
                                     All Courses
                                 </Button>
@@ -224,6 +236,14 @@ const Navbar = () => {
                                 <Button href="#outlined-buttons" sx={Styles.navlink}>
                                     Contact
                                 </Button>
+
+                                <Button sx={Styles.navlink}>
+                                    <Link to='/home' style={{ textDecoration: 'none' }}>
+                                        < FaShoppingCart style={Styles.navlink} values={2} />
+                                    </Link>
+                                </Button>
+
+
                             </Box>
                         </Menu>
                     </Box>
