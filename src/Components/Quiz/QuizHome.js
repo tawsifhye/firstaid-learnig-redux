@@ -1,5 +1,5 @@
 import { useTheme } from '@mui/material/styles';
-import { Button, Checkbox, Container, MobileStepper, Paper, Typography } from '@mui/material';
+import { Button, Checkbox, Container, FormControl, FormControlLabel, MobileStepper, Paper, Radio, RadioGroup, Typography } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { Box } from '@mui/system';
@@ -23,26 +23,57 @@ const Styles = {
 
 const QuizHome = () => {
     const [quizes, setQuizes] = useState([]);
-
+    const [selected, setSelected] = useState(false);
+    const [correctAnswer, setCorrectAnswer] = useState(0);
+    let correctAnswerVar = 0;
+    let rightAnswer = [];
     useEffect(() => {
         fetch('quiz.json')
             .then(res => res.json())
             .then(data => setQuizes(data))
     }, []);
+    // useEffect(() => {
 
+    // });
+    quizes.forEach((quiz) => (
+        rightAnswer?.push(quiz.right_answer)
+    ))
+    // console.log(rightAnswer);
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
     const maxSteps = quizes.length;
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        if (selected) {
+            setSelected(false);
+        }
     };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
+    console.log(correctAnswer);
+    const checkAnswer = (e) => {
+        if (e.target.value === quizes[activeStep].right_answer) {
+            correctAnswerVar = correctAnswer + 1;
+            setCorrectAnswer(correctAnswerVar)
 
-    console.log(quizes)
+        } else if (correctAnswer > 0) {
+            correctAnswerVar = correctAnswer - 1;
+            setCorrectAnswer(correctAnswerVar)
+        }
+        // console.log(e.target.value);
+        // console.log(quizes[activeStep].right_answer);
+        if (e.target.checked) {
+            setSelected(true);
+        }
+        else {
+            setSelected(false);
+        }
+        // if (e.target.value === ) { }
+        // else { }
+    }
     return (
         <Box>
             <Container>
@@ -63,12 +94,19 @@ const QuizHome = () => {
                     </Paper>
                     <Box sx={{ width: '80%', p: 2 }}>
 
-                        {quizes[activeStep]?.options.map((quiz) => (
 
-                            <Typography sx={Styles.optionContainer}>
-                                <Checkbox />
-                                {quiz.option}</Typography>
-                        ))}
+
+                        <FormControl>
+                            <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                name="radio-buttons-group"
+                            >
+                                {quizes[activeStep]?.options.map((answer) => (
+                                    <FormControlLabel key={answer.id} value={answer?.id} control={<Radio />} label={answer?.option} onChange={checkAnswer} />
+                                ))}
+                            </RadioGroup>
+                        </FormControl>
+
 
                     </Box>
                     <MobileStepper
@@ -80,7 +118,7 @@ const QuizHome = () => {
                             <Button
                                 size="small"
                                 onClick={handleNext}
-                                disabled={activeStep === maxSteps - 1}
+                                disabled={activeStep === maxSteps - 1 || !selected}
                             >
                                 Next
                                 {theme.direction === 'rtl' ? (
