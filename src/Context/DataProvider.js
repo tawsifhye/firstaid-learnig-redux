@@ -6,12 +6,13 @@ export const DataContext = createContext();
 const DataProvider = (props) => {
 
     const [courseList, setCourseList] = useState([]);
+
     return (
         <div>
             <DataContext.Provider
                 value={[
                     courseList,
-                    setCourseList
+                    setCourseList,
                 ]}
             >
                 {props.children}
