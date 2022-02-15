@@ -174,7 +174,7 @@ const Navbar = () => {
                             </Button>
 
                             <Button sx={Styles.navlink}>
-                                <Link to='/home' style={{ textDecoration: 'none' }}>
+                                <Link to='/cart' style={{ textDecoration: 'none' }}>
                                     < FaShoppingCart style={Styles.navlink} />
                                 </Link>
                             </Button>
@@ -238,7 +238,7 @@ const Navbar = () => {
                                 </Button>
 
                                 <Button sx={Styles.navlink}>
-                                    <Link to='/home' style={{ textDecoration: 'none' }}>
+                                    <Link to='/cart' style={{ textDecoration: 'none' }}>
                                         < FaShoppingCart style={Styles.navlink} />
                                     </Link>
                                 </Button>
