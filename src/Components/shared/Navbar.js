@@ -2,12 +2,13 @@ import { AppBar, Button, Container, IconButton, InputAdornment, Menu, TextField,
 import { Box } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../images/logo.png'
 import PrimaryButton from './PrimaryButton';
 import LoginModal from '../Home/LoginModal';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
+import { DataContext } from '../../Context/DataProvider';
 
 
 const Styles = {
@@ -58,7 +59,7 @@ const Styles = {
 
 
 const Navbar = () => {
-
+    const [cart] = useContext(DataContext)
     const [registered, setRegistered] = useState(true)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -73,7 +74,6 @@ const Navbar = () => {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-
 
     return (
         <AppBar position="static" sx={{
@@ -173,10 +173,13 @@ const Navbar = () => {
                                 Contact
                             </Button>
 
-                            <Button sx={Styles.navlink}>
+                            <Button sx={{ ...Styles.navlink, position: 'relative' }}>
                                 <Link to='/cart' style={{ textDecoration: 'none' }}>
                                     < FaShoppingCart style={Styles.navlink} />
                                 </Link>
+                                <Box sx={{ position: 'absolute', top: 0, right: 0, p: 0 }}>
+                                    {cart.length}
+                                </Box>
                             </Button>
 
 
@@ -237,10 +240,13 @@ const Navbar = () => {
                                     Contact
                                 </Button>
 
-                                <Button sx={Styles.navlink}>
+                                <Button sx={{ ...Styles.navlink, position: 'relative' }}>
                                     <Link to='/cart' style={{ textDecoration: 'none' }}>
                                         < FaShoppingCart style={Styles.navlink} />
                                     </Link>
+                                    <Box sx={{ position: 'absolute', top: 0, right: 0, p: 0 }}>
+                                        {cart.length}
+                                    </Box>
                                 </Button>
 
 

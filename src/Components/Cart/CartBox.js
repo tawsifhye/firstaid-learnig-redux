@@ -14,7 +14,6 @@ const CartBox = () => {
         subTotal,
         setSubTotal,
     ] = useContext(DataContext);
-    console.log(vat);
     const [cupon, setCupon] = useState('');
     let total = 0;
     let finalTotal = 0;
