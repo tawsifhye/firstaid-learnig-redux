@@ -6,25 +6,22 @@ import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { DataContext } from '../../Context/DataProvider';
 
 const CartBox = () => {
-
+    const vat = 0.15;
     const [cart,
         setCart,
         totalPrice,
         setTotalPrice,
         subTotal,
         setSubTotal,
-        disCountPrice,
-        setDisCountPrice,
-        vat,
     ] = useContext(DataContext);
-
+    console.log(vat);
     const [cupon, setCupon] = useState('');
     let total = 0;
     let finalTotal = 0;
     cart.forEach(element => {
         total = total + element.quantity * parseFloat(element.regularPrice - element.regularPrice * .75)
-        setSubTotal(total)
-        finalTotal = total + (subTotal * vat)
+        setSubTotal(total);
+        finalTotal = total + (subTotal * vat);
         setTotalPrice(finalTotal);
     });
 
