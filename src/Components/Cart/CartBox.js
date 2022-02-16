@@ -1,11 +1,15 @@
-import { Box, Button, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
-import React, { useContext } from 'react';
+import { Box, Button, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
+import React, { useContext, useState } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+
 import { DataContext } from '../../Context/DataProvider';
 
 const CartBox = () => {
 
-    const [cart, setCart, totalPrice, setTotalPrice, subTotal, setSubTotal, vat] = useContext(DataContext);
+    const [cart, setCart, totalPrice, setTotalPrice, subTotal, setSubTotal, disCountPrice, setDisCountPrice, vat,] = useContext(DataContext);
+    console.log(cart);
+    const [cupon, setCupon] = useState('');
     let total = 0;
     let finalTotal = 0;
     cart.forEach(element => {
@@ -20,6 +24,36 @@ const CartBox = () => {
         setCart(newCart);
     }
 
+    const handleCuponChange = (e) => {
+        setCupon(e.target.value)
+    }
+
+    const handleDiscount = () => {
+        if (cupon === 'discount') {
+            finalTotal = finalTotal / 2;
+            setDisCountPrice(finalTotal);
+            setTotalPrice(disCountPrice);
+            console.log(finalTotal, disCountPrice);
+            alert('You have got 50% discount!');
+        }
+        else if (cupon === '') {
+            alert('Please enter a Cupon code');
+        }
+        else {
+
+            alert('Wrong code');
+        }
+        console.log(finalTotal, totalPrice);
+    }
+
+    const increaseQuantity = (item) => {
+        item.quantity = item.quantity + 1
+    }
+    const decreaseQuantity = (item) => {
+        if (item.quantity > 0) {
+            item.quantity = item.quantity - 1
+        }
+    }
     return (
 
         <Box sx={{ backgroundColor: '#EDF5FF', py: '50px' }}>
@@ -55,7 +89,9 @@ const CartBox = () => {
                                         </TableCell>
                                         <TableCell align="right">${item.regularPrice}</TableCell>
                                         <TableCell align="right">
+                                            <AiOutlinePlus onClick={() => increaseQuantity(item)} />
                                             {item.quantity}
+                                            <AiOutlineMinus onClick={() => decreaseQuantity(item)} />
                                         </TableCell>
                                         <TableCell align="right">${parseFloat(item.regularPrice - item.regularPrice * .75) * item.quantity.toFixed(2)}</TableCell>
                                         <TableCell align="right"><ClearIcon onClick={() => deleteItem(item)} /> </TableCell>
@@ -84,11 +120,11 @@ const CartBox = () => {
                         variant="outlined"
                         placeholder="Coupon Code"
                         sx={{ width: "100%", background: "#fff" }}
-                    // onChange={(e) => setText(e.target.value)}
+                        onChange={handleCuponChange}
                     />
                     <Button
                         variant="contained"
-                        // onClick={handleDiscount}
+                        onClick={handleDiscount}
                         sx={{ position: "absolute", right: "20px", height: "55px" }}
                     >
                         Apply
@@ -125,7 +161,6 @@ const CartBox = () => {
                             display: "flex",
                             justifyContent: "space-between",
                             color: "#fff",
-
                             p: 2,
                         }}
                     >

@@ -19,6 +19,8 @@ const DataProvider = (props) => {
                     setSubTotal,
                     total,
                     setTotal,
+                    total,
+                    setTotal,
                     vat
                 ]}
             >
