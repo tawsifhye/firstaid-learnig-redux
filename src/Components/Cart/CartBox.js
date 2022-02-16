@@ -7,8 +7,17 @@ import { DataContext } from '../../Context/DataProvider';
 
 const CartBox = () => {
 
-    const [cart, setCart, totalPrice, setTotalPrice, subTotal, setSubTotal, disCountPrice, setDisCountPrice, vat,] = useContext(DataContext);
-    console.log(cart);
+    const [cart,
+        setCart,
+        totalPrice,
+        setTotalPrice,
+        subTotal,
+        setSubTotal,
+        disCountPrice,
+        setDisCountPrice,
+        vat,
+    ] = useContext(DataContext);
+
     const [cupon, setCupon] = useState('');
     let total = 0;
     let finalTotal = 0;
@@ -30,10 +39,9 @@ const CartBox = () => {
 
     const handleDiscount = () => {
         if (cupon === 'discount') {
-            finalTotal = finalTotal / 2;
-            setDisCountPrice(finalTotal);
-            setTotalPrice(disCountPrice);
-            console.log(finalTotal, disCountPrice);
+            const newTotal = finalTotal / 2;
+            setTotalPrice(newTotal);
+            console.log(newTotal, totalPrice);
             alert('You have got 50% discount!');
         }
         else if (cupon === '') {
@@ -43,16 +51,28 @@ const CartBox = () => {
 
             alert('Wrong code');
         }
-        console.log(finalTotal, totalPrice);
+        console.log(totalPrice);
     }
 
     const increaseQuantity = (item) => {
-        item.quantity = item.quantity + 1
+        const newCart = cart.map(cartItem => {
+            if (item.id === cartItem.id) {
+                cartItem.quantity += 1
+            }
+            return cartItem;
+        })
+        setCart(newCart)
     }
     const decreaseQuantity = (item) => {
-        if (item.quantity > 0) {
-            item.quantity = item.quantity - 1
-        }
+        const newCart = cart.map(cartItem => {
+            if (item.id === cartItem.id) {
+                if (item.quantity > 0) {
+                    item.quantity = item.quantity - 1
+                }
+            }
+            return cartItem;
+        })
+        setCart(newCart)
     }
     return (
 
@@ -167,6 +187,7 @@ const CartBox = () => {
                         <Typography>Total</Typography>
                         <Typography>${totalPrice}</Typography>
                     </Box>
+                    <Button variant="contained">Proceed To Checkout</Button>
                 </Box>
             </Container>
 
