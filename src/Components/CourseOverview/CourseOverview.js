@@ -10,7 +10,7 @@ import CourseOverviewBanner from './CourseOverviewBanner';
 
 const CourseOverview = () => {
     const { id } = useParams();
-    const [courseList, setCourseList] = useContext(DataContext);
+    const [courseList, setCourseList] = useState([]);
     const [singleCourse, setSingleCourse] = useState({});
 
     useEffect(() => {

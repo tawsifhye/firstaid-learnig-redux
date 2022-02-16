@@ -6,7 +6,7 @@ const AboutCourse = ({ course }) => {
     return (
         <Box>
             <Container>
-                <Tagline text={course.title} />
+                <Tagline text={course?.title} />
                 <br /> <br />
                 {course?.overview}
             </Container>

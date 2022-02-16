@@ -1,5 +1,4 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import { margin } from '@mui/system';
 import React from 'react';
 import { FaStar } from "react-icons/fa";
 import { GrCertificate } from "react-icons/gr";
@@ -29,7 +28,6 @@ const Styles = {
 
 
 const CourseOverviewBanner = ({ course }) => {
-    console.log(course)
     return (
         <Box>
             <Box>
