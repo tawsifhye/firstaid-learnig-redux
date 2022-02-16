@@ -11,8 +11,6 @@ import { DataContext } from '../../Context/DataProvider';
 const CourseCard = ({ course }) => {
     const { id, title, coverImage, enrolledStudents, rating, } = course;
     const [cart, setCart] = useContext(DataContext);
-    console.log(cart);
-
 
     const handleAddToCart = (course) => {
         const added = cart.find((item) => (item.id === course.id))
@@ -27,7 +25,6 @@ const CourseCard = ({ course }) => {
             const newCart = [...cart, course];
             setCart(newCart);
         }
-        console.log(cart);
     }
     return (
         <Box sx={{
