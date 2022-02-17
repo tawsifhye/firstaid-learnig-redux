@@ -5,6 +5,8 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import CourseCard from '../Home/CourseCard';
+import Navbar from '../shared/Navbar';
+import Footer from '../shared/Footer';
 
 const QuizHome = () => {
     const [quizes, setQuizes] = useState([]);
@@ -123,7 +125,8 @@ const QuizHome = () => {
     // console.log('selectedAnswer', selectedAnswer);
     return (
         <Box>
-            <Container>
+            <Navbar />
+            <Container sx={{ height: '100vh' }}>
                 <Typography variant='h3' sx={{ textAlign: 'center' }}>Free Quizes!</Typography>
                 <br /> <br />
 
@@ -218,6 +221,7 @@ const QuizHome = () => {
                 }
 
             </Container>
+            <Footer />
         </Box>
     );
 };
