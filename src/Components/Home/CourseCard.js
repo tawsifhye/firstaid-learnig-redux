@@ -9,7 +9,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
 import { DataContext } from '../../Context/DataProvider';
 const CourseCard = ({ course }) => {
-    const { id, title, coverImage, enrolledStudents, rating, } = course;
+    const { id, title, coverImage, enrolledStudents, rating, level } = course;
     const [cart, setCart] = useContext(DataContext);
 
     const handleAddToCart = (course) => {
@@ -76,6 +76,7 @@ const CourseCard = ({ course }) => {
                     <MilitaryTechIcon sx={{ mr: 1, color: '#EA2E10' }} />
                     <span style={{ color: '#435770' }}>CPD Accrediated</span>
                 </Box>
+                <Typography sx={{ color: '#435770' }}>{level}</Typography>
             </Box>
 
             <Button variant="outlined" sx={{

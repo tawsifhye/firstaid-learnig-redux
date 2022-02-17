@@ -1,12 +1,15 @@
 import { useTheme } from '@mui/material/styles';
-import { Button, Container, FormControl, FormControlLabel, MobileStepper, Paper, Radio, RadioGroup, Typography } from '@mui/material';
+import { Button, Container, FormControl, FormControlLabel, Grid, MobileStepper, Paper, Radio, RadioGroup, Typography } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
+import CourseCard from '../Home/CourseCard';
 
 const QuizHome = () => {
     const [quizes, setQuizes] = useState([]);
+    const [courseList, setCourseList] = useState([]);
+    const [filterCourse, setFilterCourse] = useState([]);
     const [selected, setSelected] = useState(false);
     const [correctAnswer, setCorrectAnswer] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -18,6 +21,22 @@ const QuizHome = () => {
     let advanced = 0;
     let rightAnswer = [];
     // let selectedAnswer = [];
+
+    useEffect(() => {
+        fetch('courselist.json')
+            .then(res => res.json())
+            .then(data => setCourseList(data));
+    }, [correctAnswer])
+    console.log(courseList);
+    useEffect(() => {
+        const filterLevel = courseList.filter((element) => (
+            element.level == level
+        ));
+        setFilterCourse(filterLevel)
+    }, [correctAnswer, level])
+
+    // console.log(filterCourse);
+
     useEffect(() => {
         fetch('quiz.json')
             .then(res => res.json())
@@ -60,17 +79,9 @@ const QuizHome = () => {
         else if (advanced > beginner || advanced > intermediate) {
             setLevel('advanced');
         }
-        console.log('beginner', beginner);
-        console.log('intermediate', intermediate);
-        console.log('advanced', advanced);
-        console.log(level);
+        console.log('User Level', level);
     }, [correctAnswer, level])
 
-
-    // correctAnswer.forEach((element, index) => {
-
-    //     console.log(element);
-    // })
 
     // console.log('rightAnswer', rightAnswer);
     const theme = useTheme();
@@ -108,7 +119,7 @@ const QuizHome = () => {
         setCorrectAnswer(filter);
         setIsSubmitted(true);
     }
-    console.log('Correct answers', correctAnswer);
+    // console.log('Correct answers', correctAnswer);
     // console.log('selectedAnswer', selectedAnswer);
     return (
         <Box>
@@ -185,14 +196,25 @@ const QuizHome = () => {
                 }
                 {
                     isSubmitted &&
-                    <Box>
-                        <Paper elevation={3} sx={{ textAlign: 'center' }}>
-                            <Typography variant='h4' > Your Correct Answer: {correctAnswer.length}/{quizes.length}</Typography>
-                            <br /> <br />
-                            <Typography variant='h5' > Suggested Courses</Typography>
-                            <Typography variant='h5' > </Typography>
-                        </Paper>
-                    </Box>
+                    <>
+                        <Box>
+                            <Paper elevation={3} sx={{ textAlign: 'center' }}>
+                                <Typography variant='h4' > Your Correct Answer: {correctAnswer.length}/{quizes.length}</Typography>
+                                <br /> <br />
+                                <Typography variant='h5' > Suggested Courses</Typography>
+                                <Typography variant='h5' > </Typography>
+                                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ mt: 10 }}>
+                                    {filterCourse.map((course) => (
+                                        <Grid item xs={2} sm={4} md={4} key={course.id}>
+                                            <CourseCard course={course} />
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            </Paper>
+                        </Box>
+                    </>
+
+
                 }
 
             </Container>
