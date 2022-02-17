@@ -1,25 +1,9 @@
 import { useTheme } from '@mui/material/styles';
-import { Button, Checkbox, Container, FormControl, FormControlLabel, MobileStepper, Paper, Radio, RadioGroup, Typography } from '@mui/material';
+import { Button, Container, FormControl, FormControlLabel, MobileStepper, Paper, Radio, RadioGroup, Typography } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-
-const Styles = {
-    optionContainer: {
-        backgroundColor: '#f4f4f4',
-        width: '100%',
-        padding: '20px 40px',
-        display: 'flex',
-        alignItems: 'center',
-        borderRadius: '5px',
-        border: '1px solid #d4d4d4',
-        margin: '35px 0',
-        textAlign: 'left',
-        fontSize: '1rem',
-        cursor: 'pointer'
-    }
-}
 
 const QuizHome = () => {
     const [quizes, setQuizes] = useState([]);
@@ -27,7 +11,11 @@ const QuizHome = () => {
     const [correctAnswer, setCorrectAnswer] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState([]);
-    let correctAnswerVar = 0;
+    const [level, setLevel] = useState('');
+
+    let beginner = 0;
+    let intermediate = 0;
+    let advanced = 0;
     let rightAnswer = [];
     // let selectedAnswer = [];
     useEffect(() => {
@@ -42,10 +30,48 @@ const QuizHome = () => {
         rightAnswer?.push(
             {
                 id: quiz?.id,
-                rightAnswer: quiz?.right_answer
+                rightAnswer: quiz?.right_answer,
+                level: quiz?.level
             }
         )
     ))
+
+
+    useEffect(() => {
+        for (let i = 0; i < correctAnswer.length; i++) {
+            correctAnswer[i].forEach((element) => {
+                if (element.level == 'beginner') {
+                    beginner++;
+                }
+                else if (element.level == 'intermediate') {
+                    intermediate++;
+                }
+                else {
+                    advanced++;
+                }
+            })
+        }
+        if (beginner > intermediate || beginner > advanced) {
+            setLevel('beginner')
+        }
+        else if (intermediate > beginner || intermediate > advanced) {
+            setLevel('intermediate')
+        }
+        else if (advanced > beginner || advanced > intermediate) {
+            setLevel('advanced');
+        }
+        console.log('beginner', beginner);
+        console.log('intermediate', intermediate);
+        console.log('advanced', advanced);
+        console.log(level);
+    }, [correctAnswer, level])
+
+
+    // correctAnswer.forEach((element, index) => {
+
+    //     console.log(element);
+    // })
+
     // console.log('rightAnswer', rightAnswer);
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -66,7 +92,8 @@ const QuizHome = () => {
         setSelected(true);
         const answer = {
             id: activeStep + 1,
-            selectedAnswer: e.target.value
+            selectedAnswer: e.target.value,
+            level: quizes[activeStep].level
         }
         const newArr = [...selectedAnswer, answer];
         setSelectedAnswer(newArr);
@@ -76,10 +103,7 @@ const QuizHome = () => {
         const findCorrect = selectedAnswer.map(a => (rightAnswer.filter(x => (a.id == x.id && a.selectedAnswer == x.rightAnswer))))
         // console.log('Correct answers', findCorrect);
         const getSelected = rightAnswer.map(a => (selectedAnswer.filter(x => (a.id == x.id && a.selectedAnswer == x.rightAnswer))))
-        console.log('selected by user', getSelected);
-        // const selectedFinder = getSelected.filter(a => (a[a.length - 1]))
-        // console.log(selectedFinder);
-
+        // console.log('selected by user', getSelected);
         const filter = findCorrect.filter(a => (a.length))
         setCorrectAnswer(filter);
         setIsSubmitted(true);
@@ -166,6 +190,7 @@ const QuizHome = () => {
                             <Typography variant='h4' > Your Correct Answer: {correctAnswer.length}/{quizes.length}</Typography>
                             <br /> <br />
                             <Typography variant='h5' > Suggested Courses</Typography>
+                            <Typography variant='h5' > </Typography>
                         </Paper>
                     </Box>
                 }
