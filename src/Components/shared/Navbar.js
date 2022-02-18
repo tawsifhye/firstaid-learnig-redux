@@ -11,6 +11,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { DataContext } from '../../Context/DataProvider';
 
 
+
 const Styles = {
     navlink: {
         color: '#4A5074',
@@ -59,7 +60,7 @@ const Styles = {
 
 
 const Navbar = () => {
-    const [cart] = useContext(DataContext)
+    const [cart] = useContext(DataContext);
     const [registered, setRegistered] = useState(true)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);

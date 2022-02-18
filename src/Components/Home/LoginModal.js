@@ -84,12 +84,6 @@ const LoginModal = ({ handleClose, open, registered, setRegistered }) => {
                             <Typography sx={Styles.label}>Email</Typography>
                             <TextField id="outlined-basic" variant="outlined" type="text" sx={Styles.form} />
 
-                            {!registered &&
-                                <>
-                                    <Typography sx={Styles.label}>Name</Typography>
-                                    <TextField id="outlined-basic" variant="outlined" type="email" sx={Styles.form} />
-                                </>
-                            }
                             <Typography sx={Styles.label}>Password</Typography>
                             <TextField id="outlined-basic" variant="outlined" type='password' sx={Styles.form} />
                             <AuthenticationButton text={registered ? 'Log In' : 'Sign Up'} backgroundColor='#C63437' />

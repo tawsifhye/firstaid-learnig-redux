@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import CourseCard from '../Home/CourseCard';
 import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
+import { Link } from 'react-router-dom';
 
 const QuizHome = () => {
     const [quizes, setQuizes] = useState([]);
@@ -123,10 +124,14 @@ const QuizHome = () => {
     }
     // console.log('Correct answers', correctAnswer);
     // console.log('selectedAnswer', selectedAnswer);
+
+    const retakeQuiz = () => {
+        window.location.reload()
+    }
     return (
         <Box>
             <Navbar />
-            <Container sx={{ height: '100vh' }}>
+            <Container sx={{}}>
                 <Typography variant='h3' sx={{ textAlign: 'center' }}>Free Quizes!</Typography>
                 <br /> <br />
 
@@ -156,6 +161,7 @@ const QuizHome = () => {
                                     {quizes[activeStep]?.options.map((answer) => (
                                         <FormControlLabel key={answer.id} value={answer?.id} control={<Radio />} label={answer?.option} onChange={checkAnswer} />
                                     ))}
+
                                 </RadioGroup>
                             </FormControl>
 
@@ -203,6 +209,10 @@ const QuizHome = () => {
                         <Box>
                             <Paper elevation={3} sx={{ textAlign: 'center' }}>
                                 <Typography variant='h4' > Your Correct Answer: {correctAnswer.length}/{quizes.length}</Typography>
+                                <br />
+
+                                <Button variant='contained' onClick={retakeQuiz}>Retake Quiz</Button>
+
                                 <br /> <br />
                                 <Typography variant='h5' > Suggested Courses</Typography>
                                 <Typography variant='h5' > </Typography>
