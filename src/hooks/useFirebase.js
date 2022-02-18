@@ -34,8 +34,15 @@ const useFirebase = () => {
             })
             .catch((error) => {
                 setError(error.message);
+                if (error) {
+                    alert(error);
+                }
+
             })
-            .finally(() => setOpen(false));
+            .finally(() => {
+                setOpen(false)
+                setError('');
+            });
     };
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -49,6 +56,8 @@ const useFirebase = () => {
         e.preventDefault();
         if (password.length < 6) {
             setError("Password should be at least 6 characters");
+
+            alert(error);
             return;
         }
         registered ? processLogin(email, password) : registerNewUser(email, password);
@@ -63,6 +72,9 @@ const useFirebase = () => {
             })
             .catch((error) => {
                 setError(error.message);
+                if (error) {
+                    alert(error);
+                }
             })
             .finally(() => {
                 window.location.reload();
@@ -76,6 +88,10 @@ const useFirebase = () => {
             })
             .catch((error) => {
                 setError(error.message);
+                setError(error.message);
+                if (error) {
+                    alert(error);
+                }
             })
             .finally(() => {
                 window.location.reload();
