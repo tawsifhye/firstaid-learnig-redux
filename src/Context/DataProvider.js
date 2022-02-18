@@ -21,6 +21,7 @@ const DataProvider = (props) => {
                     setTotal,
                     total,
                     setTotal,
+
                 ]}
             >
                 {props.children}

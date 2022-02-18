@@ -1,7 +1,8 @@
 import { Box, Button } from '@mui/material';
 import React from 'react';
 
-const AuthenticationButton = ({ text, backgroundColor, icon }) => {
+const AuthenticationButton = ({ text, backgroundColor, icon, onClick }) => {
+    console.log({ onClick })
     return (
         <Box>
 
@@ -15,7 +16,9 @@ const AuthenticationButton = ({ text, backgroundColor, icon }) => {
                 mt: 3,
                 py: '21px',
                 backgroundColor: backgroundColor
-            }}>
+            }}
+                onClick={onClick}
+            >
                 <img style={{ marginRight: '5px' }} src={icon} alt="" />  {text}
             </Button>
         </Box>

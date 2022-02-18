@@ -82,10 +82,13 @@ const QuizHome = () => {
         else if (advanced > beginner || advanced > intermediate) {
             setLevel('advanced');
         }
+        else {
+            setLevel('beginner');
+        }
         console.log('User Level', level);
     }, [correctAnswer, level])
 
-
+    console.log(selectedAnswer)
     // console.log('rightAnswer', rightAnswer);
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -136,7 +139,7 @@ const QuizHome = () => {
                 <br /> <br />
 
                 {!isSubmitted &&
-                    <Box sx={{ width: "100%", flexGrow: 1 }}>
+                    <Box sx={{ width: "100%", flexGrow: 1, mb: 50 }}>
                         <Paper
                             square
                             elevation={0}

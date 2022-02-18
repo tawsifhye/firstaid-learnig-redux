@@ -1,9 +1,10 @@
 import { Box, Modal, TextField, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AuthenticationButton from '../shared/AuthenticationButton';
 import google_icon from '../../images/google-icon.png';
 import facebook_icon from '../../images/facebook-icon.png';
 import CloseIcon from '@mui/icons-material/Close';
+import useAuth from '../../hooks/useAuth';
 
 const Styles = {
     modal: {
@@ -36,6 +37,17 @@ const Styles = {
 
 
 const LoginModal = ({ handleClose, open, registered, setRegistered }) => {
+    const { handleGoogleSignIn } = useAuth();
+    const [isFunction, setFunction] = useState(false);
+    // console.log(handleGoogleSignIn);
+    // console.log(typeof (handleGoogleSignIn))
+
+    useEffect(() => {
+        if (typeof (handleGoogleSignIn) === 'function') {
+            setFunction(true);
+        }
+    }, [handleGoogleSignIn])
+
     return (
         <div>
             <Modal
@@ -69,7 +81,10 @@ const LoginModal = ({ handleClose, open, registered, setRegistered }) => {
                             {registered ? 'Log In' : 'Sign Up'}
 
                         </Typography>
-                        <AuthenticationButton text='Log In With Google' backgroundColor='#4688F1' icon={google_icon} />
+                        {isFunction &&
+                            <AuthenticationButton onClick={handleGoogleSignIn} text='Log In With Google' backgroundColor='#4688F1' icon={google_icon} />
+                        }
+
                         <AuthenticationButton text='Log In With Facebook' backgroundColor='#3E5C97' icon={facebook_icon} />
                         <Box sx={{ mt: '100px', mb: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             <hr style={{ width: '40%' }} /> <span style={{

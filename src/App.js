@@ -4,22 +4,25 @@ import Home from "./Components/Home/Home";
 import CourseOverview from "./Components/CourseOverview/CourseOverview";
 import QuizHome from "./Components/Quiz/QuizHome";
 import CartHome from "./Components/Cart/CartHome";
+import AuthProvider from "./Context/AuthProvider";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <DataProvider>
+        <AuthProvider>
+          <DataProvider>
 
-          <Routes>
-            <Route exact path='/' element={<Home />} />
-            <Route path='home' element={<Home />} />
-            <Route path='courseoverview/:id' element={<CourseOverview />} />
-            <Route path='quiz' element={<QuizHome />} />
-            <Route path='cart' element={<CartHome />} />
-          </Routes>
+            <Routes>
+              <Route exact path='/' element={<Home />} />
+              <Route path='home' element={<Home />} />
+              <Route path='courseoverview/:id' element={<CourseOverview />} />
+              <Route path='quiz' element={<QuizHome />} />
+              <Route path='cart' element={<CartHome />} />
+            </Routes>
 
-        </DataProvider>
+          </DataProvider>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
