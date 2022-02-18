@@ -1,5 +1,5 @@
 import { Box } from '@mui/system';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PeopleIcon from '@mui/icons-material/People';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import TagLine from '../shared/Tagline';
@@ -8,23 +8,32 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
 import { DataContext } from '../../Context/DataProvider';
+import useDataProvider from '../../hooks/useDataProvider';
 const CourseCard = ({ course }) => {
     const { id, title, coverImage, enrolledStudents, rating, level } = course;
-    const [cart, setCart] = useContext(DataContext);
-
+    const [cart, setCart] = useDataProvider();
+    const [added, setAdded] = useState(false)
     const handleAddToCart = (course) => {
-        const added = cart.find((item) => (item.id === course.id))
-        if (added) {
-            added.quantity = added.quantity + 1
+        // const added = cart.find((item) => (item.id === course.id))
+        // if (!added) {
+        //     added.quantity = added.quantity + 1
+        // }
+        // else {
+        //     course = {
+        //         ...course,
+        //         quantity: 1
+        //     }
+        //     const newCart = [...cart, course];
+        //     setCart(newCart);
+        // }
+        course = {
+            ...course,
+            quantity: 1
         }
-        else {
-            course = {
-                ...course,
-                quantity: 1
-            }
-            const newCart = [...cart, course];
-            setCart(newCart);
-        }
+        const newCart = [...cart, course];
+        setCart(newCart);
+
+        setAdded(true);
     }
     return (
         <Box sx={{
@@ -79,18 +88,38 @@ const CourseCard = ({ course }) => {
                 <Typography sx={{ color: '#435770' }}>{level}</Typography>
             </Box>
 
-            <Button variant="outlined" sx={{
-                width: '100%',
-                mt: '50px',
-                border: '2.54439px solid rgba(234, 46, 16, 0.2)',
-                color: '#EA2E10',
-                fontWeight: 600,
-            }}
-                onClick={() => handleAddToCart(course)}
-            >
-                <ShoppingCartIcon />
-                Add to Cart
-            </Button>
+
+            {
+                !added ?
+                    <Button variant="outlined" sx={{
+                        width: '100%',
+                        mt: '50px',
+                        border: '2.54439px solid rgba(234, 46, 16, 0.2)',
+                        color: '#EA2E10',
+                        fontWeight: 600,
+                    }}
+                        onClick={() => handleAddToCart(course)}
+                    >
+                        <ShoppingCartIcon />
+                        Add to Cart
+                    </Button>
+                    :
+
+                    <Link to='/cart' style={{ textDecoration: 'none' }}>
+                        <Button variant="outlined" sx={{
+                            width: '100%',
+                            mt: '50px',
+                            border: '2.54439px solid rgba(234, 46, 16, 0.2)',
+                            color: '#EA2E10',
+                            fontWeight: 600,
+                        }}
+                        >
+                            Visit Cart
+                        </Button>
+                    </Link>
+            }
+
+
         </Box>
     );
 };

@@ -1,28 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
+import useData from "../hooks/useData";
 
 
 export const DataContext = createContext();
 
 const DataProvider = (props) => {
 
-    const [cart, setCart] = useState([]);
-    const [subTotal, setSubTotal] = useState(0);
-    const [total, setTotal] = useState(0);
+    const allContext = useData()
+
 
     return (
         <div>
             <DataContext.Provider
-                value={[
-                    cart,
-                    setCart,
-                    subTotal,
-                    setSubTotal,
-                    total,
-                    setTotal,
-                    total,
-                    setTotal,
-
-                ]}
+                value={allContext}
             >
                 {props.children}
             </DataContext.Provider>

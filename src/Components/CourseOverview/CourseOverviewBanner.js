@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { FaStar } from "react-icons/fa";
 import { GrCertificate } from "react-icons/gr";
 import { DataContext } from '../../Context/DataProvider';
+import useDataProvider from '../../hooks/useDataProvider';
 import PrimaryButton from '../shared/PrimaryButton';
 
 const Styles = {
@@ -29,7 +30,7 @@ const Styles = {
 
 
 const CourseOverviewBanner = ({ course }) => {
-    const [cart, setCart] = useContext(DataContext);
+    const [cart, setCart] = useDataProvider();
     const handleAddToCart = (course) => {
         const added = cart.find((item) => (item.id === course.id))
         if (added) {

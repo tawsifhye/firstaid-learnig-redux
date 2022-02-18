@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
 import { DataContext } from '../../Context/DataProvider';
 import useAuth from '../../hooks/useAuth';
+import useDataProvider from '../../hooks/useDataProvider';
 
 
 
@@ -62,8 +63,7 @@ const Styles = {
 
 const Navbar = () => {
     const { user, logOut, open, setOpen, } = useAuth();
-    console.log(user)
-    const [cart] = useContext(DataContext);
+    const [cart] = useDataProvider();
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

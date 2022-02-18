@@ -31,7 +31,7 @@ const CourseOverview = () => {
             <AboutCourse course={singleCourse} />
 
 
-            {/* <Footer /> */}
+            <Footer />
         </Box>
     );
 };
