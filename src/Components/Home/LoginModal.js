@@ -36,8 +36,10 @@ const Styles = {
 
 
 
-const LoginModal = ({ handleClose, open, registered, setRegistered }) => {
-    const { handleGoogleSignIn } = useAuth();
+const LoginModal = ({ handleClose }) => {
+    const { handleGoogleSignIn, registered, setRegistered, open, handleEmailChange,
+        handlePasswordChange,
+        handleRegistration, } = useAuth();
     const [isFunction, setFunction] = useState(false);
     // console.log(handleGoogleSignIn);
     // console.log(typeof (handleGoogleSignIn))
@@ -97,11 +99,11 @@ const LoginModal = ({ handleClose, open, registered, setRegistered }) => {
                         </Box>
                         <Box>
                             <Typography sx={Styles.label}>Email</Typography>
-                            <TextField id="outlined-basic" variant="outlined" type="text" sx={Styles.form} />
+                            <TextField onBlur={handleEmailChange} id="outlined-basic" variant="outlined" type="text" sx={Styles.form} />
 
                             <Typography sx={Styles.label}>Password</Typography>
-                            <TextField id="outlined-basic" variant="outlined" type='password' sx={Styles.form} />
-                            <AuthenticationButton text={registered ? 'Log In' : 'Sign Up'} backgroundColor='#C63437' />
+                            <TextField onBlur={handlePasswordChange} id="outlined-basic" variant="outlined" type='password' sx={Styles.form} />
+                            <AuthenticationButton onClick={handleRegistration} text={registered ? 'Log In' : 'Sign Up'} backgroundColor='#C63437' />
                             <Typography sx={{
                                 fontWeight: 'bold',
                                 fontSize: '16px',

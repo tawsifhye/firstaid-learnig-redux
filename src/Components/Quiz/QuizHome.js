@@ -61,6 +61,7 @@ const QuizHome = () => {
 
     useEffect(() => {
         for (let i = 0; i < correctAnswer.length; i++) {
+            // eslint-disable-next-line no-loop-func
             correctAnswer[i].forEach((element) => {
                 if (element.level == 'beginner') {
                     beginner++;
@@ -88,7 +89,7 @@ const QuizHome = () => {
         console.log('User Level', level);
     }, [correctAnswer, level])
 
-    console.log(selectedAnswer)
+    // console.log(selectedAnswer)
     // console.log('rightAnswer', rightAnswer);
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);

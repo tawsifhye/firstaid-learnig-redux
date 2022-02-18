@@ -17,10 +17,11 @@ const GoogleProvider = new GoogleAuthProvider();
 const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [open, setOpen] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [isLogin, setIsLogin] = useState(false);
+    const [registered, setRegistered] = useState(true)
     const auth = getAuth();
 
     //google sign in
@@ -34,7 +35,7 @@ const useFirebase = () => {
             .catch((error) => {
                 setError(error.message);
             })
-            .finally(() => setIsLoading(false));
+            .finally(() => setOpen(false));
     };
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -50,7 +51,7 @@ const useFirebase = () => {
             setError("Password should be at least 6 characters");
             return;
         }
-        isLogin ? processLogin(email, password) : registerNewUser(email, password);
+        registered ? processLogin(email, password) : registerNewUser(email, password);
     };
 
     const processLogin = (email, password) => {
@@ -95,9 +96,9 @@ const useFirebase = () => {
             });
     };
 
-    const toggleLogin = (e) => {
-        setIsLogin(e.target.checked);
-    };
+    // const toggleLogin = (e) => {
+    //     setIsLogin(e.target.checked);
+    // };
     const logOut = () => {
         setIsLoading(true);
         signOut(auth)
@@ -132,11 +133,11 @@ const useFirebase = () => {
         handleRegistration,
         processLogin,
         handleResetPassword,
-        toggleLogin,
         registerNewUser,
-        isLogin,
         logOut,
-        isLoading,
+        open,
+        setOpen,
+        registered, setRegistered
     };
 };
 

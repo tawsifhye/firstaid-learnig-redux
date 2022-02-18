@@ -9,6 +9,7 @@ import LoginModal from '../Home/LoginModal';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
 import { DataContext } from '../../Context/DataProvider';
+import useAuth from '../../hooks/useAuth';
 
 
 
@@ -60,9 +61,10 @@ const Styles = {
 
 
 const Navbar = () => {
+    const { user, logOut, open, setOpen, } = useAuth();
+    console.log(user)
     const [cart] = useContext(DataContext);
-    const [registered, setRegistered] = useState(true)
-    const [open, setOpen] = useState(false);
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -98,7 +100,9 @@ const Navbar = () => {
                         <img src={logo} alt="" />
                     </Typography>
 
-
+                    {user.email &&
+                        <Typography sx={{ color: 'black' }}> Signed in: {user.email}</Typography>
+                    }
 
 
                     <Box>
@@ -126,6 +130,7 @@ const Navbar = () => {
                                     md: 'none'
                                 }
                             }} />
+
                     </Box>
 
 
@@ -148,6 +153,7 @@ const Navbar = () => {
                                 </InputAdornment>
                             )
                         }} />
+
 
                         <Box sx={{
                             display: 'flex',
@@ -183,13 +189,13 @@ const Navbar = () => {
                                 </Box>
                             </Button>
 
-
                         </Box>
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
 
-                        <PrimaryButton onClick={handleOpen} text="Login" />
-                        <LoginModal handleClose={handleClose} open={open} registered={registered} setRegistered={setRegistered} />
+                        <PrimaryButton onClick={!user.email ? handleOpen : logOut} text={!user.email ? 'Login' : 'Logout'} />
+
+                        <LoginModal handleClose={handleClose} open={open} />
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
