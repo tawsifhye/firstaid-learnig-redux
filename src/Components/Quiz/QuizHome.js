@@ -70,7 +70,9 @@ const QuizHome = () => {
                 if (option.id == element.selectedAnswer && option.id == element.right_answer) {
                     option.isSelected = true;
                 }
-
+                else {
+                    option.isSelected = false;
+                }
             })
             index++;
         })
