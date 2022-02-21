@@ -14,7 +14,7 @@ const QuizHome = () => {
     const [courseList, setCourseList] = useState([]);
     const [filterCourse, setFilterCourse] = useState([]);
     const [selected, setSelected] = useState(false);
-    const [correctAnswer, setCorrectAnswer] = useState([]);
+    const [correctAnswer, setCorrectAnswer] = useState(0);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState([]);
     const [level, setLevel] = useState('');
@@ -23,6 +23,7 @@ const QuizHome = () => {
     let intermediate = 0;
     let advanced = 0;
     let rightAnswer = [];
+    let userSelecetedAnswers = [];
     // let selectedAnswer = [];
 
     useEffect(() => {
@@ -30,7 +31,7 @@ const QuizHome = () => {
             .then(res => res.json())
             .then(data => setCourseList(data));
     }, [correctAnswer])
-    console.log(courseList);
+    // console.log(quizes);
     useEffect(() => {
         const filterLevel = courseList.filter((element) => (
             element.level == level
@@ -45,9 +46,38 @@ const QuizHome = () => {
             .then(res => res.json())
             .then(data => setQuizes(data))
     }, []);
-    // useEffect(() => {
+    useEffect(() => {
+        selectedAnswer.forEach((element) => {
+            // console.log(element);
+            // userSelecetedAnswers.push(element);
+            if (element.id == userSelecetedAnswers[userSelecetedAnswers.length - 1]?.id) {
+                userSelecetedAnswers.pop();
+                userSelecetedAnswers.push(element);
+            }
+            else {
 
-    // });
+                userSelecetedAnswers.push(element);
+            }
+
+            // console.log('userSelecetedAnswers', userSelecetedAnswers);
+        })
+    }, [selectedAnswer, isSubmitted]);
+
+    useEffect(() => {
+        userSelecetedAnswers.forEach((element, index) => {
+            quizes[index].selectedAnswer = element.selectedAnswer;
+            quizes[index].options.forEach(option => {
+                if (option.id == element.selectedAnswer && option.id == element.right_answer) {
+                    option.isSelected = true;
+                }
+
+            })
+            index++;
+        })
+        console.log('quizes', quizes);
+
+    }, [quizes, selectedAnswer, userSelecetedAnswers])
+
     quizes.forEach((quiz) => (
         rightAnswer?.push(
             {
@@ -86,11 +116,10 @@ const QuizHome = () => {
         else {
             setLevel('beginner');
         }
-        console.log('User Level', level);
+        // console.log('User Level', level);
     }, [correctAnswer, level])
 
     // console.log(selectedAnswer)
-    // console.log('rightAnswer', rightAnswer);
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
     const maxSteps = quizes.length;
@@ -118,17 +147,24 @@ const QuizHome = () => {
     }
 
     const handleSubmit = () => {
-        const findCorrect = selectedAnswer.map(a => (rightAnswer.filter(x => (a.id == x.id && a.selectedAnswer == x.rightAnswer))))
+        // const findCorrect = selectedAnswer.map(a => (rightAnswer.filter(x => (a.id == x.id && a.selectedAnswer == x.rightAnswer))))
         // console.log('Correct answers', findCorrect);
-        const getSelected = rightAnswer.map(a => (selectedAnswer.filter(x => (a.id == x.id && a.selectedAnswer == x.rightAnswer))))
-        // console.log('selected by user', getSelected);
-        const filter = findCorrect.filter(a => (a.length))
-        setCorrectAnswer(filter);
+        let countCorrect = 0;
+        quizes.forEach(element => {
+            if (element.right_answer == element.selectedAnswer) {
+                countCorrect++;
+            }
+            setCorrectAnswer(countCorrect)
+        })
+        // console.log(a);
+        // console.log('Seleceted Answer', selectedAnswer);
+        // const filter = findCorrect.filter(a => (a.length))
+        // setCorrectAnswer(filter);
         setIsSubmitted(true);
     }
     // console.log('Correct answers', correctAnswer);
     // console.log('selectedAnswer', selectedAnswer);
-
+    // console.log('userSelecetedAnswers', userSelecetedAnswers);
     const retakeQuiz = () => {
         window.location.reload()
     }
@@ -212,9 +248,28 @@ const QuizHome = () => {
                     <>
                         <Box>
                             <Paper elevation={3} sx={{ textAlign: 'center' }}>
-                                <Typography variant='h4' > Your Correct Answer: {correctAnswer.length}/{quizes.length}</Typography>
+                                <Typography variant='h4' > Your Correct Answer: {correctAnswer}/{quizes.length}</Typography>
                                 <br />
-
+                                <Box>
+                                    {
+                                        quizes.map(quiz => (
+                                            <Box key={quiz.id}>
+                                                <Typography sx={{ fontSize: '20px', fontWeight: 'bold' }}>
+                                                    {quiz.id}. {quiz.question}
+                                                </Typography>
+                                                {quiz.options.map(element => (
+                                                    <Box key={element.id}>
+                                                        <Typography
+                                                        >
+                                                            {element.id}.{element.option}
+                                                        </Typography>
+                                                    </Box>
+                                                ))}
+                                            </Box>
+                                        ))
+                                    }
+                                </Box>
+                                <br />
                                 <Button variant='contained' onClick={retakeQuiz}>Retake Quiz</Button>
 
                                 <br /> <br />
@@ -234,9 +289,9 @@ const QuizHome = () => {
 
                 }
 
-            </Container>
+            </Container >
             <Footer />
-        </Box>
+        </Box >
     );
 };
 
