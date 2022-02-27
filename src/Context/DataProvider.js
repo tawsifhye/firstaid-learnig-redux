@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 
 const initialState = {
@@ -7,6 +7,8 @@ const initialState = {
     courses: [],
     cart: []
 }
+
+
 
 const reducer = (state, action) => {
     if (action.type === 'LOAD_COURSE') {
@@ -27,6 +29,15 @@ export const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
+
+    useEffect(() => {
+        fetch('/courselist.json')
+            .then(res => res.json())
+            .then(data => dispatch({
+                type: 'LOAD_COURSE',
+                payload: data
+            }))
+    }, []);
     return (
 
         <DataContext.Provider value={{ dataContext: state, dispatch }}>

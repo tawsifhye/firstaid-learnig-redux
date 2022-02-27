@@ -1,8 +1,7 @@
-/* import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { FaStar } from "react-icons/fa";
 import { GrCertificate } from "react-icons/gr";
-import useDataProvider from '../../hooks/useDataProvider';
 import PrimaryButton from '../shared/PrimaryButton';
 
 const Styles = {
@@ -29,140 +28,149 @@ const Styles = {
 
 
 const CourseOverviewBanner = ({ course }) => {
-    const [cart, setCart] = useDataProvider();
+
     const handleAddToCart = (course) => {
-        const added = cart.find((item) => (item.id === course.id))
-        if (added) {
-            added.quantity = added.quantity + 1
-        }
-        else {
-            course = {
-                ...course,
-                quantity: 1
-            }
-            const newCart = [...cart, course];
-            setCart(newCart);
-        }
+
     }
 
     return (
         <Box>
-            <Box>
-                <Box sx={{ backgroundColor: '#4F303B', color: 'white', py: 5 }}>
-                    <Container>
-                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                            <Grid item xs={12} sm={12} md={6}>
-                                <Typography sx={{
-                                    fontWeight: 500,
-                                    fontSize: '36px',
-                                    lineHeight: '145%',
-                                    letterSpacing: '1.2px'
-                                }}>{course?.title}</Typography>
-                                <Box sx={{ display: 'flex', alignItems: 'center', }}>
-                                    {course?.rating}
-                                    <FaStar style={{
-                                        color: '#FFB300'
-                                    }} />
-                                    <Typography sx={{ ml: 2 }}>
-                                        {course?.enrolledStudents} STUDENTS
-                                    </Typography>
-                                </Box>
-                                <Typography>We are a company who is best known for offering awarding body accredited courses for anyone who wishes to take their professional life to the next level.</Typography>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={6}>
 
-                            </Grid>
-                        </Grid>
-
-                    </Container>
-                </Box>
-                <Box sx={{ backgroundColor: '#FFF6F6', py: 5 }}>
-                    <Container>
-                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                            <Grid item xs={2} sm={4} md={4} sx={Styles.gridStyle}>
-                                <Box>
-                                    <GrCertificate style={Styles.icon} />
-                                </Box>
-                                <Box>
-                                    <Typography sx={Styles.facilitiesTitle}>
-                                        You will Get
-                                    </Typography>
-                                    <Typography sx={Styles.facilitiesText}>
-                                        Certificate of Completion
-                                    </Typography>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={2} sm={4} md={4} sx={Styles.gridStyle}>
-                                <Box>
-                                    <GrCertificate style={Styles.icon} />
-                                </Box>
-                                <Box>
-                                    <Typography sx={Styles.facilitiesTitle}>
-                                        You will Get
-                                    </Typography>
-                                    <Typography sx={Styles.facilitiesText}>
-                                        Certificate of Completion
-                                    </Typography>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={2} sm={4} md={4} sx={Styles.gridStyle}>
-                                <Box component='img' src={course?.coverImage} sx={{
-                                    width: '100%',
-                                    marginTop: {
-                                        xs: '0',
-                                        md: '-200px'
-                                    }
+            <Box sx={{ backgroundColor: '#4F303B', color: 'white', py: 5 }}>
+                <Container sx={{ maxWidth: { lg: 'lg', xl: 'xl' } }}>
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                        <Grid item xs={12} sm={12} md={6}>
+                            <Typography sx={{
+                                fontWeight: 500,
+                                fontSize: '36px',
+                                lineHeight: '145%',
+                                letterSpacing: '1.2px'
+                            }}>{course?.title}</Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'center', }}>
+                                {course?.rating}
+                                <FaStar style={{
+                                    color: '#FFB300'
                                 }} />
-                            </Grid>
-                            <Grid item xs={2} sm={4} md={4} sx={Styles.gridStyle}>
-                                <Box>
-                                    <GrCertificate style={Styles.icon} />
-                                </Box>
-                                <Box>
-                                    <Typography sx={Styles.facilitiesTitle}>
-                                        You will Get
-                                    </Typography>
-                                    <Typography sx={Styles.facilitiesText}>
-                                        Certificate of Completion
-                                    </Typography>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={2} sm={4} md={4} sx={Styles.gridStyle}>
-                                <Box>
-                                    <GrCertificate style={Styles.icon} />
-                                </Box>
-                                <Box>
-                                    <Typography sx={Styles.facilitiesTitle}>
-                                        You will Get
-                                    </Typography>
-                                    <Typography sx={Styles.facilitiesText}>
-                                        Certificate of Completion
-                                    </Typography>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={2} sm={4} md={4} sx={{ ...Styles.gridStyle, justifyContent: 'space-around' }}>
-                                <Box>
-                                    <Typography sx={{
-                                        fonWeight: 500,
-                                        fontSize: '26.88px',
-                                        lineHeight: '115.4%',
-                                        alignItems: 'center',
-                                        textDecorationLine: 'line-through',
-                                        color: '#595959'
-                                    }}>
-                                        ${course?.regularPrice}
-                                    </Typography>
-                                    <Typography sx={{ color: '#EA2E10' }}>75% off</Typography>
-                                </Box>
-                                <Typography sx={{ color: '#EA2E10', fontWeight: 'bold', fontSize: '40px' }}>${parseFloat(course?.regularPrice - course?.regularPrice * .75).toFixed(2)}</Typography>
-                                <PrimaryButton text="Buy Now" onClick={() => handleAddToCart(course)} />
-                            </Grid>
+                                <Typography sx={{ ml: 2 }}>
+                                    {course?.enrolledStudents} STUDENTS
+                                </Typography>
+                            </Box>
+                            <Typography>We are a company who is best known for offering awarding body accredited courses for anyone who wishes to take their professional life to the next level.</Typography>
                         </Grid>
-                    </Container>
-                </Box>
+                        <Grid item xs={12} sm={12} md={6} sx={{ position: 'relative', textAlign: 'center', }}>
+                            <Box component='img' src={course?.coverImage} sx={{
+                                width: {
+                                    xs: '100%',
+                                    lg: '50%'
+                                },
+                                position: {
+                                    xs: 'relative',
+                                    lg: 'absolute'
+                                },
+                            }} />
+                        </Grid>
+                    </Grid>
+
+                </Container>
+            </Box>
+            <Box sx={{ backgroundColor: '#FFF6F6', py: 5 }}>
+                <Container sx={{ maxWidth: { lg: 'lg', xl: 'xl' }, mx: 'auto' }}>
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                        <Grid item xs={2} sm={4} md={6} lg={4} sx={Styles.gridStyle}>
+                            <Box>
+                                <GrCertificate style={Styles.icon} />
+                            </Box>
+                            <Box sx={{ width: '100%' }}>
+                                <Typography sx={Styles.facilitiesTitle}>
+                                    You will Get
+                                </Typography>
+                                <Typography sx={Styles.facilitiesText}>
+                                    Certificate of Completion
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={2} sm={4} md={6} lg={4} sx={Styles.gridStyle}>
+                            <Box>
+                                <GrCertificate style={Styles.icon} />
+                            </Box>
+                            <Box>
+                                <Typography sx={Styles.facilitiesTitle}>
+                                    You will Get
+                                </Typography>
+                                <Typography sx={Styles.facilitiesText}>
+                                    Certificate of Completion
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={2} sm={4} md={6} lg={4} sx={Styles.gridStyle}>
+                            <Box>
+                                <GrCertificate style={Styles.icon} />
+                            </Box>
+                            <Box>
+                                <Typography sx={Styles.facilitiesTitle}>
+                                    You will Get
+                                </Typography>
+                                <Typography sx={Styles.facilitiesText}>
+                                    Certificate of Completion
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={2} sm={4} md={6} lg={4} sx={{
+                            display: {
+                                xs: 'none',
+                                lg: 'inline-block'
+                            }
+                        }}>
+
+                        </Grid>
+                        <Grid item xs={2} sm={4} md={6} lg={4} sx={Styles.gridStyle}>
+                            <Box>
+                                <GrCertificate style={Styles.icon} />
+                            </Box>
+                            <Box>
+                                <Typography sx={Styles.facilitiesTitle}>
+                                    You will Get
+                                </Typography>
+                                <Typography sx={Styles.facilitiesText}>
+                                    Certificate of Completion
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={2} sm={4} md={4} lg={4} sx={Styles.gridStyle}>
+                            <Box>
+                                <GrCertificate style={Styles.icon} />
+                            </Box>
+                            <Box>
+                                <Typography sx={Styles.facilitiesTitle}>
+                                    You will Get
+                                </Typography>
+                                <Typography sx={Styles.facilitiesText}>
+                                    Certificate of Completion
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={2} sm={4} md={4} lg={4} sx={{ ...Styles.gridStyle, justifyContent: 'space-around' }}>
+                            <Box>
+                                <Typography sx={{
+                                    fonWeight: 500,
+                                    fontSize: '26.88px',
+                                    lineHeight: '115.4%',
+                                    alignItems: 'center',
+                                    textDecorationLine: 'line-through',
+                                    color: '#595959'
+                                }}>
+                                    ${course?.regularPrice}
+                                </Typography>
+                                <Typography sx={{ color: '#EA2E10' }}>75% off</Typography>
+                            </Box>
+                            <Typography sx={{ color: '#EA2E10', fontWeight: 'bold', fontSize: '40px' }}>${parseFloat(course?.regularPrice - course?.regularPrice * .75).toFixed(2)}</Typography>
+                            <PrimaryButton text="Buy Now" onClick={() => handleAddToCart(course)} />
+                        </Grid>
+                    </Grid>
+                </Container>
             </Box>
         </Box >
     );
 };
 
-export default CourseOverviewBanner; */
+export default CourseOverviewBanner;

@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Link, } from '@mui/material';
+import { Box, Container, Grid, } from '@mui/material';
 import React from 'react';
 import HeroLayout from '../shared/HeroLayout';
 import PrimaryButton from '../shared/PrimaryButton';
@@ -8,6 +8,7 @@ import quiz_grid from '../../images/grid3.png'
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import Tagline from '../shared/Tagline';
 import SharedBox from '../shared/SharedBox';
+import { Link } from 'react-router-dom';
 const Styles = {
     gridStyle: {
         backgroundColor: '#FFF6F6',
@@ -55,53 +56,7 @@ const Hero = () => {
                         </Grid>
                         <Grid item xs={12} lg={6} >
                             <SharedBox HeroLayout={HeroLayout} HeroImgSrc={first_aid_box} text={<div>Trustable First Aid <br /> Courses Online</div>} fontSize='35px' />
-                            {/* <Box sx={Styles.gridStyle}>
-                                <HeroLayout styling={{
-                                    bottom: '-103px',
-                                    right: '-127px',
-                                    fontSize: '35px'
-                                }}
-                                />
 
-                                <Tagline text={<div>Trustable First Aid <br /> Courses Online</div>} fontSize='35px' />
-
-                                <Box component="span" sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                                    <PlayArrowIcon
-                                        sx={{
-                                            color: '#EA2E10',
-                                            backgroundColor: 'rgba(234, 46, 16, 0.1)',
-                                            padding: 1,
-                                            borderRadius: '50%',
-                                            mr: 1
-
-                                        }} />
-                                    <Typography sx={{
-                                        fontW: 600,
-                                        fontSize: '22px',
-                                        lineHeight: '36px',
-                                        color: '#272D4E'
-                                    }}>
-                                        Watch Promo
-                                    </Typography>
-                                </Box>
-
-                                <Box sx={{
-                                    position: 'absolute',
-                                    top: '60px',
-                                    right: {
-                                        xs: '-20px',
-                                        lg: '60px'
-                                    },
-                                }}>
-                                    <img src={first_aid_box} alt=""
-                                        style={{
-                                            width: '75%',
-
-
-                                        }} />
-                                </Box>
-
-                            </Box> */}
                             <Box sx={{ mt: 3, ...Styles.gridStyle }}>
                                 <HeroLayout styling={{
                                     bottom: '-103px',
@@ -126,7 +81,7 @@ const Hero = () => {
 
                                             }} />
                                     </Box>
-                                    <Link sx={{
+                                    <Link to='/quiz' style={{
                                         fontWeight: 'bold',
                                         fontSize: '22px',
                                         lineHeight: '36px',

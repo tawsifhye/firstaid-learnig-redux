@@ -1,6 +1,6 @@
 import { Container } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import CourseCard from './CourseCard';
 import Carousel from '../shared/Carousel';
 import CarouselButton from '../shared/CarouselButton';
@@ -11,19 +11,11 @@ import { DataContext } from '../../Context/DataProvider';
 
 
 const Courses = () => {
-
     const contextData = useContext(DataContext);
-    const { dataContext, dispatch } = contextData;
+    const { dataContext } = contextData;
     const { courses } = dataContext;
     const sliderRef = useRef(null);
-    useEffect(() => {
-        fetch('/courselist.json')
-            .then(res => res.json())
-            .then(data => dispatch({
-                type: 'LOAD_COURSE',
-                payload: data
-            }))
-    }, []);
+
     // console.log(courseList);
     return (
         <div>

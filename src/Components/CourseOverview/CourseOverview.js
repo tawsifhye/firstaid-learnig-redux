@@ -9,28 +9,24 @@ import AboutCourse from './AboutCourse';
 import CourseOverviewBanner from './CourseOverviewBanner';
 
 const CourseOverview = () => {
+    const contextData = useContext(DataContext);
+    const { dataContext, dispatch } = contextData;
+    const { courses } = dataContext;
+    console.log(dataContext);
     const { id } = useParams();
-    const [courseList, setCourseList] = useState([]);
     const [singleCourse, setSingleCourse] = useState({});
 
     useEffect(() => {
-        fetch('/courselist.json')
-            .then(res => res.json())
-            .then(data => setCourseList(data))
-    }, [])
-
-    useEffect(() => {
-        const selectedCourse = courseList.find(course => course.id === id)
+        const selectedCourse = courses.find(course => course.id === id)
         setSingleCourse(selectedCourse);
-    }, [courseList, id])
+    }, [courses, id])
 
+    console.log(singleCourse)
     return (
-        <Box>
+        <Box >
             <Navbar />
             <CourseOverviewBanner course={singleCourse} />
             <AboutCourse course={singleCourse} />
-
-
             <Footer />
         </Box>
     );
