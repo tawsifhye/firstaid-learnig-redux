@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
 import { DataContext } from '../../Context/DataProvider';
 import useAuth from '../../hooks/useAuth';
-import useDataProvider from '../../hooks/useDataProvider';
+
 
 
 
@@ -32,38 +32,13 @@ const Styles = {
         },
         height: '67.25px'
     },
-    /* modal: {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '400px',
-        height: '665px',
-        backgroundColor: 'background.paper',
-        background: '#FFFFFF',
-        borderRadius: '2px',
-        boxShadow: 24,
-        p: 4,
-    },
-    form: {
-        width: '100%',
-        border: '1px solid #767676',
-        boxSizing: 'border-box',
-        borderRadius: '5px'
 
-    },
-    label: {
-        fontWeight: 600,
-        fontSize: '12px',
-        color: '#494949',
-        mb: 1,
-    } */
 }
 
 
 const Navbar = () => {
     const { user, logOut, open, setOpen, } = useAuth();
-    const [cart] = useDataProvider();
+    // const [cart] = useDataProvider();
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -185,7 +160,7 @@ const Navbar = () => {
                                     < FaShoppingCart style={Styles.navlink} />
                                 </Link>
                                 <Box sx={{ position: 'absolute', top: 0, right: 0, p: 0 }}>
-                                    {cart.length}
+                                    { }
                                 </Box>
                             </Button>
 
@@ -252,7 +227,7 @@ const Navbar = () => {
                                         < FaShoppingCart style={Styles.navlink} />
                                     </Link>
                                     <Box sx={{ position: 'absolute', top: 0, right: 0, p: 0 }}>
-                                        {cart.length}
+                                        { }
                                     </Box>
                                 </Button>
 

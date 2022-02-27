@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-// import '../GlobalCss.css'
+
 
 const Carousel = ({ content, sliderRef, slidesToShow, slidesToScroll, arrows, dots, center }) => {
 
@@ -18,8 +18,8 @@ const Carousel = ({ content, sliderRef, slidesToShow, slidesToScroll, arrows, do
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
+                    infinite: false,
+                    dots: dots || false
                 }
             },
             {
@@ -27,20 +27,22 @@ const Carousel = ({ content, sliderRef, slidesToShow, slidesToScroll, arrows, do
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    initialSlide: 0
+                    initialSlide: 0,
+                    infinite: false,
+                    dots: dots || false
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    infinite: false,
+                    dots: dots || false
                 }
             }
         ]
     };
-
-
 
 
     return (

@@ -8,32 +8,19 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
 import { DataContext } from '../../Context/DataProvider';
-import useDataProvider from '../../hooks/useDataProvider';
+
 const CourseCard = ({ course }) => {
     const { id, title, coverImage, enrolledStudents, rating, level } = course;
-    const [cart, setCart] = useDataProvider();
     const [added, setAdded] = useState(false)
     const handleAddToCart = (course) => {
-        // const added = cart.find((item) => (item.id === course.id))
-        // if (!added) {
-        //     added.quantity = added.quantity + 1
+        // course = {
+        //     ...course,
+        //     quantity: 1
         // }
-        // else {
-        //     course = {
-        //         ...course,
-        //         quantity: 1
-        //     }
-        //     const newCart = [...cart, course];
-        //     setCart(newCart);
-        // }
-        course = {
-            ...course,
-            quantity: 1
-        }
-        const newCart = [...cart, course];
-        setCart(newCart);
+        // const newCart = [...cart, course];
+        // setCart(newCart);
 
-        setAdded(true);
+        // setAdded(true);
     }
     return (
         <Box sx={{
@@ -85,7 +72,7 @@ const CourseCard = ({ course }) => {
                     <MilitaryTechIcon sx={{ mr: 1, color: '#EA2E10' }} />
                     <span style={{ color: '#435770' }}>CPD Accrediated</span>
                 </Box>
-                <Typography sx={{ color: '#435770' }}>{level}</Typography>
+
             </Box>
 
 

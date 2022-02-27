@@ -1,22 +1,28 @@
 import { Container } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
-// import '../Components/GlobalCss.css'
+import React, { useContext, useEffect, useRef } from 'react';
 import CourseCard from './CourseCard';
 import Carousel from '../shared/Carousel';
 import CarouselButton from '../shared/CarouselButton';
 import Content from '../shared/Content';
 import Tagline from '../shared/Tagline'
+import { DataContext } from '../../Context/DataProvider';
 
 
 
 const Courses = () => {
-    const sliderRef = React.useRef(null);
-    const [courseList, setCourseList] = useState([]);
+
+    const contextData = useContext(DataContext);
+    const { dataContext, dispatch } = contextData;
+    const { courses } = dataContext;
+    const sliderRef = useRef(null);
     useEffect(() => {
         fetch('/courselist.json')
-            .then(data => data.json())
-            .then(data => setCourseList(data))
+            .then(res => res.json())
+            .then(data => dispatch({
+                type: 'LOAD_COURSE',
+                payload: data
+            }))
     }, []);
     // console.log(courseList);
     return (
@@ -38,17 +44,10 @@ const Courses = () => {
 
                 <Box sx={{ backgroundColor: '#FEF9F7', mt: '30px', padding: '10px' }}>
                     <Carousel sliderRef={sliderRef}
-                        content={courseList.map(course => (
+                        content={courses.map(course => (
                             <CourseCard key={course.id} course={course} />
                         ))}
                     />
-
-
-                    {/* <Slider ref={slider} {...settings}>
-                        {courseList.map(course => (
-                            <CourseCard key={course.id} course={course} />
-                        ))}
-                    </Slider> */}
                 </Box>
 
 

@@ -1,300 +1,132 @@
-import { useTheme } from '@mui/material/styles';
-import { Button, Container, FormControl, FormControlLabel, Grid, MobileStepper, Paper, Radio, RadioGroup, Typography } from '@mui/material';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
-import CourseCard from '../Home/CourseCard';
-import Navbar from '../shared/Navbar';
-import Footer from '../shared/Footer';
-import { Link } from 'react-router-dom';
+import { Box, } from '@mui/system';
+import Card from '@mui/material/Card';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import React, { useContext, useEffect, useState } from 'react';
+import { DataContext } from '../../Context/DataProvider';
+import { Container, FormControlLabel, Radio, } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import RadioGroup from '@mui/material/RadioGroup';
+import { Link, useNavigate } from 'react-router-dom';
 
-const QuizHome = () => {
-    const [quizes, setQuizes] = useState([]);
-    const [courseList, setCourseList] = useState([]);
-    const [filterCourse, setFilterCourse] = useState([]);
-    const [selected, setSelected] = useState(false);
-    const [correctAnswer, setCorrectAnswer] = useState(0);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+
+const QuizLayout = () => {
+    const navigate = useNavigate();
+    const contextData = useContext(DataContext);
+    const { dataContext, dispatch } = contextData;
+    const { quizzes, finalAnswers } = dataContext;
+    const [index, setIndex] = useState(0);
+    const [showQuestion, setShowQuestion] = useState(true);
     const [selectedAnswer, setSelectedAnswer] = useState([]);
-    const [level, setLevel] = useState('');
-
-    let beginner = 0;
-    let intermediate = 0;
-    let advanced = 0;
-    let rightAnswer = [];
-    let userSelecetedAnswers = [];
-    // let selectedAnswer = [];
+    const [isSelected, setIsSelected] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    let userSelectedAnswers = [];
 
     useEffect(() => {
-        fetch('courselist.json')
-            .then(res => res.json())
-            .then(data => setCourseList(data));
-    }, [correctAnswer])
-    // console.log(quizes);
-    useEffect(() => {
-        const filterLevel = courseList.filter((element) => (
-            element.level == level
-        ));
-        setFilterCourse(filterLevel)
-    }, [correctAnswer, level])
+        setShowQuestion(true);
+        selectedAnswer.forEach((element) => {
+            if (element.questionId == userSelectedAnswers[userSelectedAnswers.length - 1]?.questionId) {
+                userSelectedAnswers.pop();
+                userSelectedAnswers.push(element);
+            }
+            else {
 
-    // console.log(filterCourse);
+                userSelectedAnswers.push(element);
+            }
+            dispatch({
+                type: 'SUBMIT_QUIZ',
+                payload: userSelectedAnswers
+            })
+        })
+    }, [index, isSubmitted, isSelected])
+
 
     useEffect(() => {
         fetch('quiz.json')
             .then(res => res.json())
-            .then(data => setQuizes(data))
-    }, []);
-    useEffect(() => {
-        selectedAnswer.forEach((element) => {
-            // console.log(element);
-            // userSelecetedAnswers.push(element);
-            if (element.id == userSelecetedAnswers[userSelecetedAnswers.length - 1]?.id) {
-                userSelecetedAnswers.pop();
-                userSelecetedAnswers.push(element);
-            }
-            else {
+            .then(data => dispatch({
+                type: 'LOAD_QUIZ',
+                payload: data
+            }))
+    }, [quizzes.length])
 
-                userSelecetedAnswers.push(element);
-            }
+    const goNext = () => {
+        setShowQuestion(false)
+        setIsSelected(false);
+        let currentIndex = index;
+        currentIndex += 1;
+        setIndex(currentIndex)
+    }
+    const goBack = () => {
+        let currentIndex = index;
+        currentIndex -= 1;
+        setIndex(currentIndex)
+    }
+    const handleOnChange = (option) => {
+        setIsSelected(true);
 
-            // console.log('userSelecetedAnswers', userSelecetedAnswers);
-        })
-    }, [selectedAnswer, isSubmitted]);
-
-    useEffect(() => {
-        userSelecetedAnswers.forEach((element, index) => {
-            quizes[index].selectedAnswer = element.selectedAnswer;
-            quizes[index].options.forEach(option => {
-                if (option.id == element.selectedAnswer && option.id == element.right_answer) {
-                    option.isSelected = true;
-                }
-                else {
-                    option.isSelected = false;
-                }
-            })
-            index++;
-        })
-        console.log('quizes', quizes);
-
-    }, [quizes, selectedAnswer, userSelecetedAnswers])
-
-    quizes.forEach((quiz) => (
-        rightAnswer?.push(
-            {
-                id: quiz?.id,
-                rightAnswer: quiz?.right_answer,
-                level: quiz?.level
-            }
-        )
-    ))
-
-
-    useEffect(() => {
-        for (let i = 0; i < correctAnswer.length; i++) {
-            // eslint-disable-next-line no-loop-func
-            correctAnswer[i].forEach((element) => {
-                if (element.level == 'beginner') {
-                    beginner++;
-                }
-                else if (element.level == 'intermediate') {
-                    intermediate++;
-                }
-                else {
-                    advanced++;
-                }
-            })
-        }
-        if (beginner > intermediate || beginner > advanced) {
-            setLevel('beginner')
-        }
-        else if (intermediate > beginner || intermediate > advanced) {
-            setLevel('intermediate')
-        }
-        else if (advanced > beginner || advanced > intermediate) {
-            setLevel('advanced');
-        }
-        else {
-            setLevel('beginner');
-        }
-        // console.log('User Level', level);
-    }, [correctAnswer, level])
-
-    // console.log(selectedAnswer)
-    const theme = useTheme();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const maxSteps = quizes.length;
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        if (selected) {
-            setSelected(false);
-        }
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const checkAnswer = (e) => {
-        setSelected(true);
         const answer = {
-            id: activeStep + 1,
-            selectedAnswer: e.target.value,
-            level: quizes[activeStep].level
+            questionId: quizzes[index].id,
+            question: quizzes[index].question,
+            options: quizzes[index].options,
+            selectedAnswer: option,
+            level: quizzes[index].level
         }
         const newArr = [...selectedAnswer, answer];
         setSelectedAnswer(newArr);
     }
 
-    const handleSubmit = () => {
-        // const findCorrect = selectedAnswer.map(a => (rightAnswer.filter(x => (a.id == x.id && a.selectedAnswer == x.rightAnswer))))
-        // console.log('Correct answers', findCorrect);
-        let countCorrect = 0;
-        quizes.forEach(element => {
-            if (element.right_answer == element.selectedAnswer) {
-                countCorrect++;
-            }
-            setCorrectAnswer(countCorrect)
-        })
-        // console.log(a);
-        // console.log('Seleceted Answer', selectedAnswer);
-        // const filter = findCorrect.filter(a => (a.length))
-        // setCorrectAnswer(filter);
+
+
+    const submitQuiz = () => {
         setIsSubmitted(true);
+        navigate('/result');
     }
-    // console.log('Correct answers', correctAnswer);
-    // console.log('selectedAnswer', selectedAnswer);
-    // console.log('userSelecetedAnswers', userSelecetedAnswers);
-    const retakeQuiz = () => {
-        window.location.reload()
-    }
+
     return (
-        <Box>
-            <Navbar />
-            <Container sx={{}}>
-                <Typography variant='h3' sx={{ textAlign: 'center' }}>Free Quizes!</Typography>
-                <br /> <br />
+        <Container sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 650,
+            height: '100vh'
+        }}>
+            {
+                showQuestion &&
 
-                {!isSubmitted &&
-                    <Box sx={{ width: "100%", flexGrow: 1, mb: 50 }}>
-                        <Paper
-                            square
-                            elevation={0}
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                pl: 2,
-                                bgcolor: 'background.default',
-                            }}
-                        >
-                            <Typography>{quizes[activeStep]?.question}</Typography>
-                        </Paper>
-                        <Box sx={{ width: '80%', p: 2 }}>
+                <Card sx={{ minWidth: 450, p: 2, }}>
+                    <Typography variant='h6'>{quizzes[index]?.id}. {quizzes[index]?.question}</Typography>
+                    <Box>
 
+                        <FormControl sx={{ m: 3 }} variant="standard">
+                            <RadioGroup
+                            >
+                                {
+                                    quizzes[index]?.options.map(element => (
+                                        <FormControlLabel onChange={() => handleOnChange(element)} key={element.id} value={element.id} control={<Radio />} label={element.option} />
+                                    ))
+                                }
 
-
-                            <FormControl>
-                                <RadioGroup
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    name="radio-buttons-group"
-                                >
-                                    {quizes[activeStep]?.options.map((answer) => (
-                                        <FormControlLabel key={answer.id} value={answer?.id} control={<Radio />} label={answer?.option} onChange={checkAnswer} />
-                                    ))}
-
-                                </RadioGroup>
-                            </FormControl>
-
-
-                        </Box>
-                        <MobileStepper
-                            variant="text"
-                            steps={maxSteps}
-                            position="static"
-                            activeStep={activeStep}
-                            nextButton={
-                                <Button
-                                    size="small"
-                                    onClick={handleNext}
-                                    disabled={activeStep === maxSteps - 1 || !selected}
-                                >
-                                    Next
-                                    {theme.direction === 'rtl' ? (
-                                        <KeyboardArrowLeft />
-                                    ) : (
-                                        <KeyboardArrowRight />
-                                    )}
-                                </Button>
-                            }
-                            backButton={
-                                <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                                    {theme.direction === 'rtl' ? (
-                                        <KeyboardArrowRight />
-                                    ) : (
-                                        <KeyboardArrowLeft />
-                                    )}
-                                    Back
-                                </Button>
-                            }
-                        />
-                        {
-                            activeStep === quizes.length - 1 &&
-                            <Button onClick={handleSubmit} variant="contained">Submit</Button>
-                        }
+                            </RadioGroup>
+                        </FormControl>
                     </Box>
-                }
+                </Card>
+            }
+            <Box>
+                <Button onClick={goBack} disabled={index === 0}>Prev</Button>
                 {
-                    isSubmitted &&
-                    <>
-                        <Box>
-                            <Paper elevation={3} sx={{ textAlign: 'center' }}>
-                                <Typography variant='h4' > Your Correct Answer: {correctAnswer}/{quizes.length}</Typography>
-                                <br />
-                                <Box>
-                                    {
-                                        quizes.map(quiz => (
-                                            <Box key={quiz.id}>
-                                                <Typography sx={{ fontSize: '20px', fontWeight: 'bold' }}>
-                                                    {quiz.id}. {quiz.question}
-                                                </Typography>
-                                                {quiz.options.map(element => (
-                                                    <Box key={element.id}>
-                                                        <Typography
-                                                        >
-                                                            {element.id}.{element.option}
-                                                        </Typography>
-                                                    </Box>
-                                                ))}
-                                            </Box>
-                                        ))
-                                    }
-                                </Box>
-                                <br />
-                                <Button variant='contained' onClick={retakeQuiz}>Retake Quiz</Button>
+                    index === quizzes.length - 1 ?
 
-                                <br /> <br />
-                                <Typography variant='h5' > Suggested Courses</Typography>
-                                <Typography variant='h5' > </Typography>
-                                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ mt: 10 }}>
-                                    {filterCourse.map((course) => (
-                                        <Grid item xs={2} sm={4} md={4} key={course.id}>
-                                            <CourseCard course={course} />
-                                        </Grid>
-                                    ))}
-                                </Grid>
-                            </Paper>
-                        </Box>
-                    </>
+                        <Button onClick={submitQuiz} disabled={!isSelected} variant='contained'>Submit</Button>
 
+                        :
+                        <Button onClick={goNext} disabled={index === quizzes.length - 1 || !isSelected}>Next</Button>
 
                 }
-
-            </Container >
-            <Footer />
-        </Box >
+            </Box>
+        </Container>
     );
 };
 
-export default QuizHome;
+export default QuizLayout;

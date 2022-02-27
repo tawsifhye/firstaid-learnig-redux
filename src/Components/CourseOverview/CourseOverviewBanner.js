@@ -1,8 +1,7 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
-import React, { useContext } from 'react';
+/* import { Box, Container, Grid, Typography } from '@mui/material';
+import React from 'react';
 import { FaStar } from "react-icons/fa";
 import { GrCertificate } from "react-icons/gr";
-import { DataContext } from '../../Context/DataProvider';
 import useDataProvider from '../../hooks/useDataProvider';
 import PrimaryButton from '../shared/PrimaryButton';
 
@@ -166,4 +165,4 @@ const CourseOverviewBanner = ({ course }) => {
     );
 };
 
-export default CourseOverviewBanner;
+export default CourseOverviewBanner; */

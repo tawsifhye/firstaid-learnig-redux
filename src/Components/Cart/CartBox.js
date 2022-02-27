@@ -1,20 +1,21 @@
 import { Box, Button, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ClearIcon from '@mui/icons-material/Clear';
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import useDataProvider from '../../hooks/useDataProvider';
+import { DataContext } from '../../Context/DataProvider';
 
 const CartBox = () => {
-    const vat = 0.15;
-    const [cart,
+    const contextData = useContext(DataContext);
+    const { dataContext, dispatch, cart,
         setCart,
         totalPrice,
         setTotalPrice,
         subTotal,
         setSubTotal,
         discount,
-        setDiscount
-    ] = useDataProvider();
+        setDiscount } = contextData;
+    const vat = 0.15;
+
     const [cupon, setCupon] = useState('');
     const [cuponUsed, setCuponUsed] = useState(false);
     // console.log(discount)
