@@ -32,7 +32,12 @@ const CourseIndex = () => {
                         Curriculam
                     </NavHashLink>
                 </li>
-                <li style={Style.li}>Assesment & Certification</li>
+                <li style={Style.li}>
+                    <NavHashLink className='course-index-link' to="#certificate"
+                    >
+                        Assesment & Certification
+                    </NavHashLink>
+                </li>
                 <li style={Style.li}>Reviews</li>
                 <li style={Style.li}>FAQs</li>
             </ul>

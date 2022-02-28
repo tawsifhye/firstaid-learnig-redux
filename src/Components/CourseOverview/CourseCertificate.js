@@ -6,7 +6,7 @@ import Content from '../shared/Content';
 import certificate from '../../images/certificate.png'
 const CourseCertificate = () => {
     return (
-        <Box sx={{ background: '#FFF6F6', mb: 5, py: 3 }}>
+        <Box id="certificate" sx={{ background: '#FFF6F6', mb: 5, py: 3 }}>
             <Container sx={{ maxWidth: { lg: 'lg', xl: 'xl' } }}>
 
                 <Grid container rowSpacing={5} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>

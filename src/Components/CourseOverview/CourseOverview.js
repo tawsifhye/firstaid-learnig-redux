@@ -9,12 +9,12 @@ import AboutCourse from './AboutCourse';
 import CourseCertificate from './CourseCertificate';
 import CourseIndex from './CourseIndex';
 import CourseOverviewBanner from './CourseOverviewBanner';
+import Curriculam from './Curriculam';
 
 const CourseOverview = () => {
     const contextData = useContext(DataContext);
     const { dataContext, dispatch } = contextData;
     const { courses } = dataContext;
-    console.log(dataContext);
     const { id } = useParams();
     const [singleCourse, setSingleCourse] = useState({});
 
@@ -23,13 +23,13 @@ const CourseOverview = () => {
         setSingleCourse(selectedCourse);
     }, [courses, id])
 
-    console.log(singleCourse)
     return (
         <Box >
             <Navbar />
             <CourseOverviewBanner course={singleCourse} />
             <CourseIndex />
             <AboutCourse course={singleCourse} />
+            <Curriculam />
             <CourseCertificate />
             <Footer />
         </Box>

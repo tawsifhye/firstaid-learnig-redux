@@ -5,7 +5,7 @@ import Tagline from '../shared/Tagline';
 const AboutCourse = ({ course }) => {
     return (
         <Box id='overview'>
-            <Container sx={{ maxWidth: { lg: 'lg', xl: 'xl' }, mb: 20 }}>
+            <Container sx={{ maxWidth: { lg: 'lg', xl: 'xl' }, mb: 5 }}>
                 <Tagline text={course?.title} />
                 <br /> <br />
                 {course?.overview}
