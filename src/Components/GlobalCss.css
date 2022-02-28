@@ -104,3 +104,18 @@
       color: #EA2E10;
       ;
   }
+
+
+  .course-index-link {
+
+      text-decoration: none;
+      color: black;
+  }
+
+  .course-index-link :active {
+      color: #EA2E10
+  }
+
+  .course-index-link :visited {
+      color: #EA2E10
+  }

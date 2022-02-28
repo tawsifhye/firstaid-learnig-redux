@@ -6,6 +6,7 @@ import { DataContext } from '../../Context/DataProvider';
 import Footer from '../shared/Footer';
 import Navbar from '../shared/Navbar';
 import AboutCourse from './AboutCourse';
+import CourseCertificate from './CourseCertificate';
 import CourseIndex from './CourseIndex';
 import CourseOverviewBanner from './CourseOverviewBanner';
 
@@ -29,6 +30,7 @@ const CourseOverview = () => {
             <CourseOverviewBanner course={singleCourse} />
             <CourseIndex />
             <AboutCourse course={singleCourse} />
+            <CourseCertificate />
             <Footer />
         </Box>
     );
