@@ -5,7 +5,10 @@ const initialState = {
     quizzes: [],
     finalAnswers: [],
     courses: [],
-    cart: []
+    cart: [],
+    subTotal: 0,
+    totalVat: 0,
+    totalPrice: 0
 }
 
 
@@ -22,6 +25,15 @@ const reducer = (state, action) => {
     }
     if (action.type === 'ADD_TO_CART') {
         return { ...state, cart: action.payload }
+    }
+    if (action.type === 'ADD_SUBTOTAL') {
+        return { ...state, subTotal: action.payload }
+    }
+    if (action.type === 'ADD_VAT') {
+        return { ...state, totalVat: action.payload }
+    }
+    if (action.type === 'ADD_TOTAL') {
+        return { ...state, totalPrice: action.payload }
     }
 }
 
