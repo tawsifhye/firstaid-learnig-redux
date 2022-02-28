@@ -43,7 +43,7 @@ const CourseOverviewBanner = ({ course }) => {
     }, [cart, course])
 
     const handleAddToCart = (course) => {
-        const added = cart.find(item => (item.id === course.id));
+        const added = cart?.find(item => (item.id === course.id));
 
         if (!added) {
             course = {

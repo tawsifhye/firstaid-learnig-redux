@@ -7,8 +7,9 @@ import { DataContext } from '../../Context/DataProvider';
 const CartBox = () => {
     const contextData = useContext(DataContext);
     const { dataContext, dispatch } = contextData;
-    const { cart, subTotal, totalVat, totalPrice } = dataContext;
-    // console.log(cart)
+    const { cart, subTotal, totalVat, totalPrice, } = dataContext;
+    // discountPrice
+    console.log(dataContext)
     const vat = 0.15;
 
     const [cupon, setCupon] = useState('');
@@ -19,7 +20,7 @@ const CartBox = () => {
 
     let finalTotal = 0;
     useEffect(() => {
-        cart.forEach(element => {
+        cart?.forEach(element => {
             total = total + element.quantity * parseFloat(element.regularPrice - element.regularPrice * .75)
             dispatch({
                 type: 'ADD_SUBTOTAL',
@@ -38,16 +39,29 @@ const CartBox = () => {
     }, [total, finalTotal, cart, totalVat])
 
     const deleteItem = (item) => {
-        const newCart = cart.filter(cart => (cart.id !== item.id));
+        // const newCart = cart.filter(cart => (cart.id !== item.id));
 
     }
 
     const handleCuponChange = (e) => {
-        // setCupon(e.target.value)
+        setCupon(e.target.value)
     }
 
     const handleDiscount = () => {
 
+        if (cupon === 'discount') {
+            dispatch({
+                type: 'DISCOUNT_PRICE',
+                payload: totalPrice / 2
+            })
+            setCuponUsed(true);
+        }
+        else if (cupon === '') {
+            alert('Enter a cupon code');
+        }
+        else {
+            alert('Wrong Code');
+        }
 
     };
 
@@ -140,17 +154,18 @@ const CartBox = () => {
                         variant="outlined"
                         placeholder="Coupon Code"
                         sx={{ width: "100%", background: "#fff" }}
-                        onChange={handleCuponChange}
+                        onBlur={handleCuponChange}
                     />
-                    {!cuponUsed &&
-                        <Button
-                            variant="contained"
-                            onClick={handleDiscount}
-                            sx={{ position: "absolute", right: "20px", height: "55px" }}
-                        >
-                            Apply
-                        </Button>
-                    }
+
+                    <Button
+                        variant="contained"
+                        onClick={handleDiscount}
+                        disabled={cuponUsed}
+                        sx={{ position: "absolute", right: "20px", height: "55px" }}
+                    >
+                        Apply
+                    </Button>
+
 
                     <Box
                         sx={{
@@ -187,7 +202,7 @@ const CartBox = () => {
                         }}
                     >
                         <Typography>Total</Typography>
-                        {/* <Typography>${!cuponUsed ? total : discount}</Typography> */}
+                        {/* <Typography>${!cuponUsed ? totalPrice : discountPrice}</Typography> */}
                         <Typography>${totalPrice}</Typography>
                     </Box>
                     <Button variant="contained">Proceed To Checkout</Button>

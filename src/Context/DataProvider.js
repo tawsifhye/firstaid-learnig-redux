@@ -8,7 +8,8 @@ const initialState = {
     cart: [],
     subTotal: 0,
     totalVat: 0,
-    totalPrice: 0
+    totalPrice: 0,
+
 }
 
 
@@ -32,9 +33,7 @@ const reducer = (state, action) => {
     if (action.type === 'ADD_VAT') {
         return { ...state, totalVat: action.payload }
     }
-    if (action.type === 'ADD_TOTAL') {
-        return { ...state, totalPrice: action.payload }
-    }
+
 }
 
 export const DataContext = createContext();
