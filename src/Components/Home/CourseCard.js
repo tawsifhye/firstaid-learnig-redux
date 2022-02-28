@@ -1,5 +1,5 @@
 import { Box } from '@mui/system';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PeopleIcon from '@mui/icons-material/People';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import TagLine from '../shared/Tagline';
@@ -9,18 +9,33 @@ import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
 import { DataContext } from '../../Context/DataProvider';
 
-const CourseCard = ({ course }) => {
-    const { id, title, coverImage, enrolledStudents, rating, level } = course;
-    const [added, setAdded] = useState(false)
-    const handleAddToCart = (course) => {
-        // course = {
-        //     ...course,
-        //     quantity: 1
-        // }
-        // const newCart = [...cart, course];
-        // setCart(newCart);
 
-        // setAdded(true);
+const CourseCard = ({ course }) => {
+    const contextData = useContext(DataContext);
+    const { dataContext, dispatch } = contextData;
+    const { cart } = dataContext;
+    const { id, title, coverImage, enrolledStudents, rating, level } = course;
+    const [isAdded, setIsAdded] = useState(false);
+
+    useEffect(() => {
+        const added = cart.find((item) => (item.id === course.id));
+        if (added) {
+            setIsAdded(true);
+        }
+    }, [cart, course])
+
+    const handleAddToCart = (course) => {
+        course = {
+            ...course,
+            quantity: 1
+        }
+        const newCart = [...cart, course];
+        dispatch({
+            type: 'ADD_TO_CART',
+            payload: newCart
+        })
+
+        setIsAdded(true);
     }
     return (
         <Box sx={{
@@ -77,7 +92,7 @@ const CourseCard = ({ course }) => {
 
 
             {
-                !added ?
+                !isAdded ?
                     <Button variant="outlined" sx={{
                         width: '100%',
                         mt: '50px',

@@ -8,7 +8,6 @@ import PrimaryButton from './PrimaryButton';
 import LoginModal from '../Home/LoginModal';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
-import { DataContext } from '../../Context/DataProvider';
 import useAuth from '../../hooks/useAuth';
 
 
@@ -76,7 +75,7 @@ const Navbar = () => {
                     </Typography>
 
                     {user.email &&
-                        <Typography sx={{ color: 'black' }}> Signed in: {user.email}</Typography>
+                        <Typography sx={{ color: 'black' }}> Signed in: {user?.email}</Typography>
                     }
 
 

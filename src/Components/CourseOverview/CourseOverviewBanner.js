@@ -1,7 +1,9 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaStar } from "react-icons/fa";
 import { GrCertificate } from "react-icons/gr";
+import { Link } from 'react-router-dom';
+import { DataContext } from '../../Context/DataProvider';
 import PrimaryButton from '../shared/PrimaryButton';
 
 const Styles = {
@@ -28,9 +30,33 @@ const Styles = {
 
 
 const CourseOverviewBanner = ({ course }) => {
+    const contextData = useContext(DataContext);
+    const { dataContext, dispatch } = contextData;
+    const { cart } = dataContext;
+    const [isAdded, setIsAdded] = useState(false);
+
+    useEffect(() => {
+        const added = cart.find((item) => (item.id === course.id));
+        if (added) {
+            setIsAdded(true);
+        }
+    }, [cart, course])
 
     const handleAddToCart = (course) => {
+        const added = cart.find(item => (item.id === course.id));
 
+        if (!added) {
+            course = {
+                ...course,
+                quantity: 1
+            }
+            const newCart = [...cart, course];
+            dispatch({
+                type: 'ADD_TO_CART',
+                payload: newCart
+            })
+        }
+        setIsAdded(true);
     }
 
     return (
@@ -164,7 +190,14 @@ const CourseOverviewBanner = ({ course }) => {
                                 <Typography sx={{ color: '#EA2E10' }}>75% off</Typography>
                             </Box>
                             <Typography sx={{ color: '#EA2E10', fontWeight: 'bold', fontSize: '40px' }}>${parseFloat(course?.regularPrice - course?.regularPrice * .75).toFixed(2)}</Typography>
-                            <PrimaryButton text="Buy Now" onClick={() => handleAddToCart(course)} />
+                            {
+                                !isAdded ?
+                                    <PrimaryButton text="Buy Now" onClick={() => handleAddToCart(course)} />
+                                    :
+                                    <Link to='/cart' style={{ textDecoration: 'none' }}>
+                                        <PrimaryButton text="Visit Cart" />
+                                    </Link>
+                            }
                         </Grid>
                     </Grid>
                 </Container>

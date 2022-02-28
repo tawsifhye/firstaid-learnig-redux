@@ -18,6 +18,7 @@ function App() {
               <Route path='home' element={<Home />} />
               <Route path='courseoverview/:id' element={<CourseOverview />} />
               <Route path='quiz' element={<QuizHome />} />
+              <Route path='cart' element={<CartHome />} />
 
             </Routes>
 

@@ -6,7 +6,7 @@ import { DataContext } from '../../Context/DataProvider';
 
 const CartBox = () => {
     const contextData = useContext(DataContext);
-    const { dataContext, dispatch, cart,
+    const { dataContext, dispatch,
         setCart,
         totalPrice,
         setTotalPrice,
@@ -14,6 +14,8 @@ const CartBox = () => {
         setSubTotal,
         discount,
         setDiscount } = contextData;
+    const { cart } = dataContext;
+    console.log(cart)
     const vat = 0.15;
 
     const [cupon, setCupon] = useState('');
@@ -22,12 +24,12 @@ const CartBox = () => {
     let total = 0;
 
     let finalTotal = 0;
-    cart.forEach(element => {
-        total = total + element.quantity * parseFloat(element.regularPrice - element.regularPrice * .75)
-        setSubTotal(total);
-        finalTotal = total + (subTotal * vat);
-        setTotalPrice(finalTotal);
-    });
+    // cart?.forEach(element => {
+    //     total = total + element.quantity * parseFloat(element.regularPrice - element.regularPrice * .75)
+    //     setSubTotal(total);
+    //     finalTotal = total + (subTotal * vat);
+    //     setTotalPrice(finalTotal);
+    // });
 
     const deleteItem = (item) => {
         const newCart = cart.filter(cart => (cart.id !== item.id));
@@ -39,19 +41,7 @@ const CartBox = () => {
     }
 
     const handleDiscount = () => {
-        if (cupon === 'discount') {
-            const newTotal = finalTotal / 2;
-            setTotalPrice(newTotal);
-            alert('You have got 50% discount!');
-            setCuponUsed(true);
-        }
-        else if (cupon === '') {
-            alert('Please enter a Cupon code');
-        }
-        else {
 
-            alert('Wrong code');
-        }
 
     }
 
@@ -100,7 +90,7 @@ const CartBox = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {cart.map((item) => (
+                                {cart?.map((item) => (
                                     <TableRow
                                         key={item.id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -114,7 +104,7 @@ const CartBox = () => {
                                             {item.quantity}
                                             <AiOutlineMinus onClick={() => decreaseQuantity(item)} />
                                         </TableCell>
-                                        <TableCell align="right">${parseFloat(item.regularPrice - item.regularPrice * .75) * item.quantity.toFixed(2)}</TableCell>
+                                        {/* <TableCell align="right">${parseFloat(item.regularPrice - item.regularPrice * .75) * item.quantity.toFixed(2)}</TableCell> */}
                                         <TableCell align="right"><ClearIcon onClick={() => deleteItem(item)} /> </TableCell>
                                     </TableRow>
                                 ))}
@@ -164,7 +154,7 @@ const CartBox = () => {
                         }}
                     >
                         <Typography>Subtotal</Typography>
-                        <Typography>${subTotal}</Typography>
+                        <Typography></Typography>
                     </Box>
                     <Box
                         sx={{
@@ -177,7 +167,7 @@ const CartBox = () => {
                         }}
                     >
                         <Typography>Vat</Typography>
-                        <Typography>${subTotal * vat}</Typography>
+                        <Typography></Typography>
                     </Box>
                     <Box
                         sx={{
