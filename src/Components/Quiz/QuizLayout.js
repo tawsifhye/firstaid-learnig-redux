@@ -89,42 +89,68 @@ const QuizLayout = () => {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            width: 650,
-            height: '100vh'
+
         }}>
             {
                 showQuestion &&
 
-                <Card sx={{ minWidth: 450, p: 2, }}>
+                <Card sx={{
+                    minWidth: '', p: 2,
+                    boxShadow: '-8px 4px 19px 0 rgb(0 0 0 / 12%)',
+                    padding: '60px 80px',
+                    borderRadius: '20px',
+                    mb: 5,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
                     <Typography variant='h6'>{quizzes[index]?.id}. {quizzes[index]?.question}</Typography>
                     <Box>
 
-                        <FormControl sx={{ m: 3 }} variant="standard">
-                            <RadioGroup
-                            >
+                        <FormControl sx={{
+                            m: 3,
+                        }} variant="standard">
+
+                            <RadioGroup >
                                 {
                                     quizzes[index]?.options.map(element => (
-                                        <FormControlLabel onChange={() => handleOnChange(element)} key={element.id} value={element.id} control={<Radio />} label={element.option} />
+                                        <FormControlLabel
+                                            sx={{
+                                                backgroundColor: ' #f4f4f4',
+                                                mt: 4,
+                                                display: 'flex',
+                                                justifyContent: 'flex-start',
+                                                width: '100%',
+                                                alignItems: 'center',
+                                                borderRadius: '5px',
+                                                border: '1px solid #d4d4d4',
+
+                                            }} onChange={() => handleOnChange(element)} key={element.id} value={element.id} control={<Radio />} label={element.option} />
                                     ))
                                 }
 
                             </RadioGroup>
                         </FormControl>
                     </Box>
+                    <Box >
+
+                        <Typography sx={{ fontWeight: 600 }}>Question {index + 1}/{quizzes.length}</Typography>
+
+                        <Button onClick={goBack} disabled={index === 0}>Prev</Button>
+                        {
+                            index === quizzes.length - 1 ?
+
+                                <Button onClick={submitQuiz} disabled={!isSelected} variant='contained'>Submit</Button>
+
+                                :
+                                <Button onClick={goNext} disabled={index === quizzes.length - 1 || !isSelected}>Next</Button>
+
+                        }
+                    </Box>
                 </Card>
             }
-            <Box>
-                <Button onClick={goBack} disabled={index === 0}>Prev</Button>
-                {
-                    index === quizzes.length - 1 ?
 
-                        <Button onClick={submitQuiz} disabled={!isSelected} variant='contained'>Submit</Button>
-
-                        :
-                        <Button onClick={goNext} disabled={index === quizzes.length - 1 || !isSelected}>Next</Button>
-
-                }
-            </Box>
         </Container>
     );
 };
