@@ -109,7 +109,7 @@ const Curriculam = () => {
                     {
                         modules.map((element, index) => (
                             <>
-                                <Box key={element.id} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: { lg: '50%' }, borderBottom: '1px solid #DFDFDF' }}>
+                                <Box key={element.id} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: { lg: '50%' }, borderBottom: '1px solid #DFDFDF' }}>
 
                                     <Typography sx={{ display: 'flex', alignItems: 'center', mr: 4 }}>
                                         {!open && <HiPlusCircle style={{ fontSize: '25px', color: '#ED3B45', mr: 3 }} onClick={() => setOpen(true)} />}
