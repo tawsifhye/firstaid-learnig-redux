@@ -41,14 +41,7 @@ const QuizLayout = () => {
     }, [index, isSubmitted, isSelected])
 
 
-    useEffect(() => {
-        fetch('quiz.json')
-            .then(res => res.json())
-            .then(data => dispatch({
-                type: 'LOAD_QUIZ',
-                payload: data
-            }))
-    }, [quizzes.length])
+
 
     const goNext = () => {
         setShowQuestion(false)

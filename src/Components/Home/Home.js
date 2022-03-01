@@ -11,14 +11,12 @@ import Footer from '../shared/Footer';
 const Home = () => {
     return (
         <div>
-            <Navbar />
             <Hero />
             <Courses />
             <FreeResources />
             <TipsSection />
             <StudentReviewSection />
             <LatestNews />
-            <Footer />
         </div>
     );
 };

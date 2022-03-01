@@ -25,13 +25,11 @@ const CourseOverview = () => {
 
     return (
         <Box >
-            <Navbar />
             <CourseOverviewBanner course={singleCourse} />
             <CourseIndex />
             <AboutCourse course={singleCourse} />
             <Curriculam />
             <CourseCertificate />
-            <Footer />
         </Box>
     );
 };

@@ -7,9 +7,7 @@ import CartBox from './CartBox';
 const CartHome = () => {
     return (
         <Box>
-            <Navbar />
             <CartBox />
-            <Footer />
         </Box>
     );
 };

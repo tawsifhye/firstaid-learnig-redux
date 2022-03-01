@@ -6,9 +6,7 @@ import QuizLayout from './QuizLayout';
 const QuizHome = () => {
     return (
         <div>
-            <Navbar />
             <QuizLayout />
-            <Footer />
         </div>
     );
 };

@@ -59,6 +59,15 @@ const DataProvider = ({ children }) => {
                 payload: data
             }))
     }, []);
+
+    useEffect(() => {
+        fetch('quiz.json')
+            .then(res => res.json())
+            .then(data => dispatch({
+                type: 'LOAD_QUIZ',
+                payload: data
+            }))
+    }, [])
     return (
 
         <DataContext.Provider value={{ state, dispatch }}>
