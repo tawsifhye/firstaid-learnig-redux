@@ -45,11 +45,12 @@ const QUizResult = () => {
         else {
             setLevel('beginner');
         }
-        console.log('User Level', level);
+        // console.log('User Level', level);
     }, [finalAnswers, level]);
 
     useEffect(() => {
         const filterCourse = courses.filter(element => (element.level === level));
+        // console.log(filterCourse);
         setFilteredCourse(filterCourse);
     }, [level, courses])
     return (
