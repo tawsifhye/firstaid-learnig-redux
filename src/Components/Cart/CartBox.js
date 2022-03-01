@@ -6,21 +6,21 @@ import { DataContext } from '../../Context/DataProvider';
 
 const CartBox = () => {
     const contextData = useContext(DataContext);
-    const { dataContext, dispatch } = contextData;
-    const { cart, subTotal, totalVat, totalPrice, } = dataContext;
+    const { state, dispatch } = contextData;
+    const { cart, subTotal, totalVat, totalPrice, discountPrice, cuponUsed } = state;
     // discountPrice
-    console.log(dataContext)
+    // console.log(cart, subTotal, totalVat, totalPrice)
     const vat = 0.15;
 
     const [cupon, setCupon] = useState('');
-    const [cuponUsed, setCuponUsed] = useState(false);
+
 
     // console.log(discount)
     let total = 0;
 
     let finalTotal = 0;
     useEffect(() => {
-        cart?.forEach(element => {
+        cart.forEach(element => {
             total = total + element.quantity * parseFloat(element.regularPrice - element.regularPrice * .75)
             dispatch({
                 type: 'ADD_SUBTOTAL',
@@ -36,7 +36,8 @@ const CartBox = () => {
                 payload: finalTotal
             })
         });
-    }, [total, finalTotal, cart, totalVat])
+    }, [total, finalTotal, cart, totalVat, totalPrice])
+
 
     const deleteItem = (item) => {
         // const newCart = cart.filter(cart => (cart.id !== item.id));
@@ -54,7 +55,10 @@ const CartBox = () => {
                 type: 'DISCOUNT_PRICE',
                 payload: totalPrice / 2
             })
-            setCuponUsed(true);
+            dispatch({
+                type: 'USE_CUPON',
+                payload: true
+            })
         }
         else if (cupon === '') {
             alert('Enter a cupon code');
@@ -70,6 +74,10 @@ const CartBox = () => {
             if (item.id === cartItem.id) {
                 cartItem.quantity += 1
             }
+            dispatch({
+                type: 'USE_CUPON',
+                payload: false
+            })
             return cartItem;
         });
         dispatch({ type: 'ADD_TO_CART', payload: newCart });
@@ -82,6 +90,10 @@ const CartBox = () => {
                     item.quantity = item.quantity - 1
                 }
             }
+            dispatch({
+                type: 'USE_CUPON',
+                payload: false
+            })
             return cartItem;
         });
         dispatch({ type: 'ADD_TO_CART', payload: newCart });
@@ -202,8 +214,8 @@ const CartBox = () => {
                         }}
                     >
                         <Typography>Total</Typography>
-                        {/* <Typography>${!cuponUsed ? totalPrice : discountPrice}</Typography> */}
-                        <Typography>${totalPrice}</Typography>
+                        <Typography>${!cuponUsed ? totalPrice : discountPrice}</Typography>
+                        {/* <Typography>${totalPrice}</Typography> */}
                     </Box>
                     <Button variant="contained">Proceed To Checkout</Button>
                 </Box>

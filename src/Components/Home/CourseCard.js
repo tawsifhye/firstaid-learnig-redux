@@ -12,8 +12,8 @@ import { DataContext } from '../../Context/DataProvider';
 
 const CourseCard = ({ course }) => {
     const contextData = useContext(DataContext);
-    const { dataContext, dispatch } = contextData;
-    const { cart } = dataContext;
+    const { state, dispatch } = contextData;
+    const { cart } = state;
     const { id, title, coverImage, enrolledStudents, rating, level } = course;
     const [isAdded, setIsAdded] = useState(false);
 

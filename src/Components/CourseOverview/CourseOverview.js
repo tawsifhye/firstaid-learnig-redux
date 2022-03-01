@@ -13,8 +13,8 @@ import Curriculam from './Curriculam';
 
 const CourseOverview = () => {
     const contextData = useContext(DataContext);
-    const { dataContext, dispatch } = contextData;
-    const { courses } = dataContext;
+    const { state, dispatch } = contextData;
+    const { courses } = state;
     const { id } = useParams();
     const [singleCourse, setSingleCourse] = useState({});
 

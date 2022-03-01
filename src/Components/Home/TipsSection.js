@@ -46,7 +46,7 @@ const TipsSection = () => {
                     xl: 'xl'
                 }
             }}>
-                <TagLine text={<div>Helful Tips & Tricks to Learn</div>} />
+                <TagLine text={<div>Helpful Tips & Tricks to Learn</div>} />
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: { xs: 'column', md: 'row' } }}>
                     <Content text={<div>We are a company who is best known for offering awarding body accredited courses for anyone who wishes to <br /> take their professional life to the next level.</div>} />
                     <Box >

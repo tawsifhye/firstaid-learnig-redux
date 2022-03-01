@@ -36,7 +36,7 @@ const SharedBox = ({ HeroLayout, HeroImgSrc, text, fontSize, tips }) => {
                 sx={{
                     top: '-80px',
                     right: {
-                        xs: '-120px',
+                        xs: '-180px',
                         lg: '-180px',
                         xl: '-250px'
                     },

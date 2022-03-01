@@ -9,6 +9,8 @@ const initialState = {
     subTotal: 0,
     totalVat: 0,
     totalPrice: 0,
+    discountPrice: 0,
+    cuponUsed: false
 
 }
 
@@ -33,7 +35,15 @@ const reducer = (state, action) => {
     if (action.type === 'ADD_VAT') {
         return { ...state, totalVat: action.payload }
     }
-
+    if (action.type === 'ADD_TOTAL') {
+        return { ...state, totalPrice: action.payload }
+    }
+    if (action.type === 'DISCOUNT_PRICE') {
+        return { ...state, discountPrice: action.payload }
+    }
+    if (action.type === 'USE_CUPON') {
+        return { ...state, cuponUsed: action.payload }
+    }
 }
 
 export const DataContext = createContext();
@@ -51,7 +61,7 @@ const DataProvider = ({ children }) => {
     }, []);
     return (
 
-        <DataContext.Provider value={{ dataContext: state, dispatch }}>
+        <DataContext.Provider value={{ state, dispatch }}>
             {children}
         </DataContext.Provider>
     );

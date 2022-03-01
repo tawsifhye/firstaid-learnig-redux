@@ -31,8 +31,8 @@ const Styles = {
 
 const CourseOverviewBanner = ({ course }) => {
     const contextData = useContext(DataContext);
-    const { dataContext, dispatch } = contextData;
-    const { cart } = dataContext;
+    const { state, dispatch } = contextData;
+    const { cart } = state;
     const [isAdded, setIsAdded] = useState(false);
 
     useEffect(() => {

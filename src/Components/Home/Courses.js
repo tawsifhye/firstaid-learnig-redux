@@ -12,8 +12,8 @@ import { DataContext } from '../../Context/DataProvider';
 
 const Courses = () => {
     const contextData = useContext(DataContext);
-    const { dataContext } = contextData;
-    const { courses } = dataContext;
+    const { state } = contextData;
+    const { courses } = state;
     const sliderRef = useRef(null);
 
     // console.log(courseList);

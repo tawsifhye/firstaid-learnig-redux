@@ -13,8 +13,8 @@ import { Link, useNavigate } from 'react-router-dom';
 const QuizLayout = () => {
     const navigate = useNavigate();
     const contextData = useContext(DataContext);
-    const { dataContext, dispatch } = contextData;
-    const { quizzes, finalAnswers } = dataContext;
+    const { state, dispatch } = contextData;
+    const { quizzes, finalAnswers } = state;
     const [index, setIndex] = useState(0);
     const [showQuestion, setShowQuestion] = useState(true);
     const [selectedAnswer, setSelectedAnswer] = useState([]);
