@@ -24,6 +24,21 @@ export const fetchCourse = () => {
             );
     }
 }
+export const fetchFreeResources = () => {
+    return async (dispatch) => {
+        await fetch('https://tawsifhye.github.io/data/freeresources.json')
+            .then(res => res.json())
+            .then(
+                data => (
+                    dispatch({
+                        type: 'LOAD_FREE_RESOURCE',
+                        payload: data
+                    })
+                )
+            );
+
+    }
+}
 export const fetchQuiz = () => {
     return async (dispatch) => {
         await fetch('https://tawsifhye.github.io/data/quizes.json')

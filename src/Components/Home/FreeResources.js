@@ -4,17 +4,18 @@ import { Container, Grid } from '@mui/material';
 import Tagline from '../shared/Tagline';
 import Content from '../shared/Content';
 import SharedCard from '../shared/SharedCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchFreeResources } from '../../redux/action';
 
 
 
 
 const FreeResources = () => {
 
-    const [freeResources, setFreeResources] = useState([]);
+    const { freeResources } = useSelector(state => state)
+    const dispatch = useDispatch();
     useEffect(() => {
-        fetch('/freeresources.json')
-            .then(res => res.json())
-            .then(data => setFreeResources(data))
+        dispatch(fetchFreeResources())
     }, [])
     return (
         <Box sx={{ mt: '20px', backgroundColor: '#FFF6F6', padding: '30px 10px' }}>

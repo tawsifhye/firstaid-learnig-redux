@@ -4,6 +4,7 @@ export const initialState = {
     finalAnswers: [],
     courses: [],
     cart: [],
+    freeResources: [],
     subTotal: 0,
     totalVat: 0,
     totalPrice: 0,

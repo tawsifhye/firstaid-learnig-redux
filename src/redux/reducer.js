@@ -7,6 +7,12 @@ export const reducer = (state = initialState, action) => {
             courses: action.payload
         }
     }
+    else if (action.type === 'LOAD_FREE_RESOURCE') {
+        return {
+            ...state,
+            freeResources: action.payload
+        }
+    }
     else if (action.type === 'LOAD_QUIZ') {
         return {
             ...state,
