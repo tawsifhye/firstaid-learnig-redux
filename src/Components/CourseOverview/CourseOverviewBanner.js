@@ -1,9 +1,10 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaStar } from "react-icons/fa";
 import { GrCertificate } from "react-icons/gr";
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { DataContext } from '../../Context/DataProvider';
+import { addToCart } from '../../redux/action';
 import PrimaryButton from '../shared/PrimaryButton';
 
 const Styles = {
@@ -30,20 +31,20 @@ const Styles = {
 
 
 const CourseOverviewBanner = ({ course }) => {
-    const contextData = useContext(DataContext);
-    const { state, dispatch } = contextData;
-    const { cart } = state;
+
+    const { cart } = useSelector(state => state)
+    const dispatch = useDispatch();
     const [isAdded, setIsAdded] = useState(false);
 
     useEffect(() => {
-        const added = cart.find((item) => (item.id === course.id));
+        const added = cart?.find((item) => (item.id === course?.id));
         if (added) {
             setIsAdded(true);
         }
     }, [cart, course])
 
     const handleAddToCart = (course) => {
-        const added = cart?.find(item => (item.id === course.id));
+        const added = cart?.find(item => (item.id === course?.id));
 
         if (!added) {
             course = {
@@ -51,10 +52,7 @@ const CourseOverviewBanner = ({ course }) => {
                 quantity: 1
             }
             const newCart = [...cart, course];
-            dispatch({
-                type: 'ADD_TO_CART',
-                payload: newCart
-            })
+            dispatch(addToCart(newCart));
         }
         setIsAdded(true);
     }

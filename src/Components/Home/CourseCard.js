@@ -1,5 +1,5 @@
 import { Box } from '@mui/system';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PeopleIcon from '@mui/icons-material/People';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import TagLine from '../shared/Tagline';
@@ -7,13 +7,16 @@ import { Button, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
-import { DataContext } from '../../Context/DataProvider';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../../redux/action';
 
 
 const CourseCard = ({ course }) => {
-    const contextData = useContext(DataContext);
-    const { state, dispatch } = contextData;
-    const { cart } = state;
+    const { cart } = useSelector(state => state)
+    const dispatch = useDispatch();
+    // const contextData = useContext(DataContext);
+    // const { state, dispatch } = contextData;
+    // const { cart } = state;
     const { id, title, coverImage, enrolledStudents, rating, level } = course;
     const [isAdded, setIsAdded] = useState(false);
 
@@ -30,11 +33,7 @@ const CourseCard = ({ course }) => {
             quantity: 1
         }
         const newCart = [...cart, course];
-        dispatch({
-            type: 'ADD_TO_CART',
-            payload: newCart
-        })
-
+        dispatch(addToCart(newCart));
         setIsAdded(true);
     }
     return (

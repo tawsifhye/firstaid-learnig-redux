@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@mui/system';
 import { Container, Grid } from '@mui/material';
 import Tagline from '../shared/Tagline';
@@ -8,10 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchFreeResources } from '../../redux/action';
 
 
-
-
 const FreeResources = () => {
-
     const { freeResources } = useSelector(state => state)
     const dispatch = useDispatch();
     useEffect(() => {
