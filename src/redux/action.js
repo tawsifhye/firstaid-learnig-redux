@@ -1,8 +1,28 @@
+// https://tawsifhye.github.io/data/courses.json
 
-export const fetchCourse = (payload) => {
-    return {
-        type: 'LOAD_COURSE',
-        payload
+/* return async (dispatch) => {
+    const response = await fetch('https://tawsifhye.github.io/data/shop.json')
+        .then(res => res.json());
+    dispatch({
+        type: 'FETCH_API_DATA',
+        payload: response
+    })
+} */
+
+export const fetchCourse = () => {
+
+    return async (dispatch) => {
+        await fetch('https://tawsifhye.github.io/data/courses.json')
+            .then(res => res.json())
+            .then(
+                data => (
+                    dispatch({
+                        type: 'LOAD_COURSE',
+                        payload: data
+                    })
+                )
+            );
+
     }
 }
 export const fetchQuiz = (payload) => {
