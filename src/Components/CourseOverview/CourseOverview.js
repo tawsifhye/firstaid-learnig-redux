@@ -1,10 +1,8 @@
-import { Container, Typography } from '@mui/material';
+
 import { Box } from '@mui/system';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { DataContext } from '../../Context/DataProvider';
-import Footer from '../shared/Footer';
-import Navbar from '../shared/Navbar';
 import AboutCourse from './AboutCourse';
 import CourseCertificate from './CourseCertificate';
 import CourseIndex from './CourseIndex';
@@ -12,9 +10,7 @@ import CourseOverviewBanner from './CourseOverviewBanner';
 import Curriculam from './Curriculam';
 
 const CourseOverview = () => {
-    const contextData = useContext(DataContext);
-    const { state, dispatch } = contextData;
-    const { courses } = state;
+    const courses = useSelector(state => state.courses);
     const { id } = useParams();
     const [singleCourse, setSingleCourse] = useState({});
 

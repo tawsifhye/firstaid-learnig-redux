@@ -22,7 +22,6 @@ export const fetchCourse = () => {
                     })
                 )
             );
-
     }
 }
 export const fetchQuiz = () => {
@@ -41,14 +40,14 @@ export const fetchQuiz = () => {
     }
 }
 
-/* export const submitQuiz = (payload) => {
+export const submitQuiz = (payload) => {
 
-    return {
-        type: 'SUBMIT_QUIZ',
-        payload
-    }
+    /*  return {
+         type: 'SUBMIT_QUIZ',
+         payload
+     } */
 
-} */
+}
 
 export const addToCart = (payload) => {
     return {
