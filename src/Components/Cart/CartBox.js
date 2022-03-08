@@ -1,15 +1,18 @@
-import { Box, Button, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import {
+    Box, Button, Container, Table, TableBody, TableCell, TableContainer, TableHead,
+    TableRow, TextField, Typography
+} from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ClearIcon from '@mui/icons-material/Clear';
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { DataContext } from '../../Context/DataProvider';
+import { addSubTotal, addVat, addTotal, calculateDiscount, addCupon, increaseQuantity, decreaseQuantity } from "../../redux/action"
 
 const CartBox = () => {
-    const contextData = useContext(DataContext);
-    const { state, dispatch } = contextData;
+    const state = useSelector(state => state);
+    const dispatch = useDispatch();
+
     const { cart, subTotal, totalVat, totalPrice, discountPrice, cuponUsed } = state;
-    // discountPrice
-    // console.log(cart, subTotal, totalVat, totalPrice)
     const vat = 0.15;
 
     const [cupon, setCupon] = useState('');
@@ -22,19 +25,10 @@ const CartBox = () => {
     useEffect(() => {
         cart.forEach(element => {
             total = total + element.quantity * parseFloat(element.regularPrice - element.regularPrice * .75)
-            dispatch({
-                type: 'ADD_SUBTOTAL',
-                payload: total
-            })
-            dispatch({
-                type: 'ADD_VAT',
-                payload: subTotal * vat
-            })
+            dispatch(addSubTotal(total));
+            dispatch(addVat(subTotal * vat));
             finalTotal = total + totalVat;
-            dispatch({
-                type: 'ADD_TOTAL',
-                payload: finalTotal
-            })
+            dispatch(addTotal(finalTotal));
         });
     }, [total, finalTotal, cart, totalVat, totalPrice])
 
@@ -51,14 +45,8 @@ const CartBox = () => {
     const handleDiscount = () => {
 
         if (cupon === 'discount') {
-            dispatch({
-                type: 'DISCOUNT_PRICE',
-                payload: totalPrice / 2
-            })
-            dispatch({
-                type: 'USE_CUPON',
-                payload: true
-            })
+            dispatch(calculateDiscount(totalPrice / 2));
+            dispatch(addCupon(true));
         }
         else if (cupon === '') {
             alert('Enter a cupon code');
@@ -69,35 +57,17 @@ const CartBox = () => {
 
     };
 
-    const increaseQuantity = (item) => {
-        const newCart = cart.map(cartItem => {
-            if (item.id === cartItem.id) {
-                cartItem.quantity += 1
-            }
-            dispatch({
-                type: 'USE_CUPON',
-                payload: false
-            })
-            return cartItem;
-        });
-        dispatch({ type: 'ADD_TO_CART', payload: newCart });
+    const handleQuantity = (item, type) => {
+        if (type === 'increase') {
+            dispatch(increaseQuantity(item.id))
+            dispatch(addCupon(false));
+        }
+        else {
+            dispatch(decreaseQuantity(item.id))
+            dispatch(addCupon(false));
+        }
     }
-    const decreaseQuantity = (item) => {
 
-        const newCart = cart.map(cartItem => {
-            if (item.id === cartItem.id) {
-                if (item.quantity > 0) {
-                    item.quantity = item.quantity - 1
-                }
-            }
-            dispatch({
-                type: 'USE_CUPON',
-                payload: false
-            })
-            return cartItem;
-        });
-        dispatch({ type: 'ADD_TO_CART', payload: newCart });
-    }
     return (
 
         <Box sx={{ backgroundColor: '#EDF5FF', py: '50px' }}>
@@ -135,9 +105,9 @@ const CartBox = () => {
                                         <TableCell align="right">${item.regularPrice}</TableCell>
                                         <TableCell align="right">${parseFloat(item.regularPrice - item.regularPrice * .75).toFixed(2)}</TableCell>
                                         <TableCell align="right">
-                                            <AiOutlinePlus onClick={() => increaseQuantity(item)} />
+                                            <AiOutlinePlus onClick={() => handleQuantity(item, 'increase')} />
                                             {item.quantity}
-                                            <AiOutlineMinus onClick={() => decreaseQuantity(item)} />
+                                            <AiOutlineMinus onClick={() => handleQuantity(item, 'decrease')} />
                                         </TableCell>
                                         <TableCell align="right">${parseFloat(item.regularPrice - item.regularPrice * .75) * item.quantity.toFixed(2)}</TableCell>
                                         <TableCell align="right"><ClearIcon onClick={() => deleteItem(item)} /> </TableCell>

@@ -14,10 +14,7 @@ import { addToCart } from '../../redux/action';
 const CourseCard = ({ course }) => {
     const { cart } = useSelector(state => state)
     const dispatch = useDispatch();
-    // const contextData = useContext(DataContext);
-    // const { state, dispatch } = contextData;
-    // const { cart } = state;
-    const { id, title, coverImage, enrolledStudents, rating, level } = course;
+    const { id, title, coverImage, enrolledStudents, rating } = course;
     const [isAdded, setIsAdded] = useState(false);
 
     useEffect(() => {
