@@ -4,7 +4,7 @@ import { FaStar } from "react-icons/fa";
 import { GrCertificate } from "react-icons/gr";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addToCart } from '../../redux/action';
+import { addToCart, addCupon } from '../../redux/action';
 import PrimaryButton from '../shared/PrimaryButton';
 
 const Styles = {
@@ -44,16 +44,14 @@ const CourseOverviewBanner = ({ course }) => {
     }, [cart, course])
 
     const handleAddToCart = (course) => {
-        const added = cart?.find(item => (item.id === course?.id));
 
-        if (!added) {
-            course = {
-                ...course,
-                quantity: 1
-            }
-            const newCart = [...cart, course];
-            dispatch(addToCart(newCart));
+        course = {
+            ...course,
+            quantity: 1
         }
+        const newCart = [...cart, course];
+        dispatch(addToCart(newCart));
+        dispatch(addCupon(false));
         setIsAdded(true);
     }
 

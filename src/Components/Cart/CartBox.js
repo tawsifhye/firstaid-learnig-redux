@@ -6,7 +6,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ClearIcon from '@mui/icons-material/Clear';
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { addSubTotal, addVat, addTotal, calculateDiscount, addCupon, increaseQuantity, decreaseQuantity, removeFromCart } from "../../redux/action"
+import {
+    addSubTotal, addVat, addTotal, calculateDiscount, addCupon, increaseQuantity,
+    decreaseQuantity, removeFromCart
+} from "../../redux/action"
 
 const CartBox = () => {
     const state = useSelector(state => state);
@@ -36,7 +39,6 @@ const CartBox = () => {
             dispatch(addTotal(0));
         }
     }, [total, finalTotal, cart, totalVat, totalPrice])
-
 
     const deleteItem = (item) => {
         dispatch(removeFromCart(item.id));
@@ -151,8 +153,9 @@ const CartBox = () => {
                     >
                         Apply
                     </Button>
-
-
+                    {cuponUsed &&
+                        <Typography sx={{ color: 'white', display: 'flex', alignItems: 'center' }}>{cupon} <ClearIcon /></Typography>
+                    }
                     <Box
                         sx={{
                             display: "flex",

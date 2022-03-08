@@ -8,7 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../redux/action';
+import { addToCart, addCupon } from '../../redux/action';
 
 
 const CourseCard = ({ course }) => {
@@ -31,6 +31,7 @@ const CourseCard = ({ course }) => {
         }
         const newCart = [...cart, course];
         dispatch(addToCart(newCart));
+        dispatch(addCupon(false));
         setIsAdded(true);
     }
     return (
