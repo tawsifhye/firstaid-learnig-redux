@@ -2,19 +2,20 @@ import { Box, } from '@mui/system';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import React, { useContext, useEffect, useState } from 'react';
-import { DataContext } from '../../Context/DataProvider';
+import React, { useEffect, useState } from 'react';
 import { Container, FormControlLabel, Radio, } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import RadioGroup from '@mui/material/RadioGroup';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchQuiz } from '../../redux/action';
 
 
 const QuizLayout = () => {
     const navigate = useNavigate();
-    const contextData = useContext(DataContext);
-    const { state, dispatch } = contextData;
-    const { quizzes, finalAnswers } = state;
+    const state = useSelector(state => state);
+    const { quizzes } = state;
+    const dispatch = useDispatch();
     const [index, setIndex] = useState(0);
     const [showQuestion, setShowQuestion] = useState(true);
     const [selectedAnswer, setSelectedAnswer] = useState([]);
@@ -23,9 +24,10 @@ const QuizLayout = () => {
     let userSelectedAnswers = [];
 
     useEffect(() => {
+        dispatch(fetchQuiz());
         setShowQuestion(true);
         selectedAnswer.forEach((element) => {
-            if (element.questionId == userSelectedAnswers[userSelectedAnswers.length - 1]?.questionId) {
+            if (element.questionId === userSelectedAnswers[userSelectedAnswers.length - 1]?.questionId) {
                 userSelectedAnswers.pop();
                 userSelectedAnswers.push(element);
             }
@@ -33,10 +35,14 @@ const QuizLayout = () => {
 
                 userSelectedAnswers.push(element);
             }
-            dispatch({
-                type: 'SUBMIT_QUIZ',
-                payload: userSelectedAnswers
-            })
+
+            let newArr = [...userSelectedAnswers];
+            dispatch(
+                {
+                    type: 'SUBMIT_QUIZ',
+                    payload: newArr
+                }
+            )
         })
     }, [index, isSubmitted, isSelected])
 
@@ -49,6 +55,8 @@ const QuizLayout = () => {
         let currentIndex = index;
         currentIndex += 1;
         setIndex(currentIndex)
+
+
     }
     const goBack = () => {
         let currentIndex = index;

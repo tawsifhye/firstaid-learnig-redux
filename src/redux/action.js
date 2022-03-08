@@ -25,18 +25,31 @@ export const fetchCourse = () => {
 
     }
 }
-export const fetchQuiz = (payload) => {
-    return {
-        type: 'LOAD_QUIZ',
-        payload
+export const fetchQuiz = () => {
+    return async (dispatch) => {
+        await fetch('https://tawsifhye.github.io/data/quizes.json')
+            .then(res => res.json())
+            .then(
+                data => (
+                    dispatch({
+                        type: 'LOAD_QUIZ',
+                        payload: data
+                    })
+                )
+            );
+
     }
 }
-export const submitQuiz = (payload) => {
+
+/* export const submitQuiz = (payload) => {
+
     return {
         type: 'SUBMIT_QUIZ',
         payload
     }
-}
+
+} */
+
 export const addToCart = (payload) => {
     return {
         type: 'ADD_TO_CART',

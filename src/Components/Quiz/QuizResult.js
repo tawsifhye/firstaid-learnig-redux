@@ -1,17 +1,17 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { DataContext } from '../../Context/DataProvider';
+
 import CourseCard from '../Home/CourseCard';
 
 const QUizResult = () => {
-    const contextData = useContext(DataContext);
+    const state = useSelector(state => state);
+    const { quizzes, finalAnswers, courses } = state;
     const [correct, setCorrect] = useState(0);
     const [level, setLevel] = useState('');
     const [filteredCourse, setFilteredCourse] = useState([]);
-    const { state, dispatch } = contextData;
-    const { quizzes, finalAnswers, courses } = state;
-    // console.log('courses', courses);
+
     let beginner = 0;
     let intermediate = 0;
     let advanced = 0;
