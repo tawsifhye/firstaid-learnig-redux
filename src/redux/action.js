@@ -114,3 +114,9 @@ export const decreaseQuantity = (payload) => {
         payload
     }
 }
+export const removeFromCart = (payload) => {
+    return {
+        type: 'REMOVE_CART_ITEM',
+        payload
+    }
+}

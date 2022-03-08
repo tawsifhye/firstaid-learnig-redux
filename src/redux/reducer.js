@@ -61,6 +61,12 @@ export const reducer = (state = initialState, action) => {
             cuponUsed: action.payload
         }
     }
+    else if (action.type === 'REMOVE_CART_ITEM') {
+        return {
+            ...state,
+            cart: state.cart.filter(item => item.id !== action.payload)
+        }
+    }
     else if (action.type === 'INCREASE_QUANTITY') {
         return {
             ...state,

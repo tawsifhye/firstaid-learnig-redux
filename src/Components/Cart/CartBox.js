@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ClearIcon from '@mui/icons-material/Clear';
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { addSubTotal, addVat, addTotal, calculateDiscount, addCupon, increaseQuantity, decreaseQuantity } from "../../redux/action"
+import { addSubTotal, addVat, addTotal, calculateDiscount, addCupon, increaseQuantity, decreaseQuantity, removeFromCart } from "../../redux/action"
 
 const CartBox = () => {
     const state = useSelector(state => state);
@@ -30,12 +30,16 @@ const CartBox = () => {
             finalTotal = total + totalVat;
             dispatch(addTotal(finalTotal));
         });
+        if (!cart.length) {
+            dispatch(addSubTotal(0));
+            dispatch(addVat(0));
+            dispatch(addTotal(0));
+        }
     }, [total, finalTotal, cart, totalVat, totalPrice])
 
 
     const deleteItem = (item) => {
-        // const newCart = cart.filter(cart => (cart.id !== item.id));
-
+        dispatch(removeFromCart(item.id));
     }
 
     const handleCuponChange = (e) => {
@@ -103,13 +107,13 @@ const CartBox = () => {
                                             {item.title}
                                         </TableCell>
                                         <TableCell align="right">${item.regularPrice}</TableCell>
-                                        <TableCell align="right">${parseFloat(item.regularPrice - item.regularPrice * .75).toFixed(2)}</TableCell>
+                                        <TableCell align="right">${parseFloat(item.regularPrice - item.regularPrice * .75)}</TableCell>
                                         <TableCell align="right">
                                             <AiOutlinePlus onClick={() => handleQuantity(item, 'increase')} />
                                             {item.quantity}
                                             <AiOutlineMinus onClick={() => handleQuantity(item, 'decrease')} />
                                         </TableCell>
-                                        <TableCell align="right">${parseFloat(item.regularPrice - item.regularPrice * .75) * item.quantity.toFixed(2)}</TableCell>
+                                        <TableCell align="right">${parseFloat(item.regularPrice - item.regularPrice * .75) * item.quantity}</TableCell>
                                         <TableCell align="right"><ClearIcon onClick={() => deleteItem(item)} /> </TableCell>
                                     </TableRow>
                                 ))}
