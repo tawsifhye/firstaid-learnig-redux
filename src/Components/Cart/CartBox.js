@@ -154,7 +154,7 @@ const CartBox = () => {
                         Apply
                     </Button>
                     {cuponUsed &&
-                        <Typography sx={{ color: 'white', display: 'flex', alignItems: 'center' }}>{cupon} <ClearIcon /></Typography>
+                        <Typography sx={{ color: 'white', display: 'flex', alignItems: 'center' }}>{cupon} <ClearIcon onClick={() => dispatch(addCupon(false))} /></Typography>
                     }
                     <Box
                         sx={{
