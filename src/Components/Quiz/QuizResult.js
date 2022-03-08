@@ -1,13 +1,15 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchCourse } from '../../redux/action';
 
 import CourseCard from '../Home/CourseCard';
 
 const QUizResult = () => {
     const state = useSelector(state => state);
     const { quizzes, finalAnswers, courses } = state;
+    const dispatch = useDispatch();
     const [correct, setCorrect] = useState(0);
     const [level, setLevel] = useState('');
     const [filteredCourse, setFilteredCourse] = useState([]);
@@ -49,6 +51,7 @@ const QUizResult = () => {
     }, [finalAnswers, level]);
 
     useEffect(() => {
+        dispatch(fetchCourse());
         const filterCourse = courses.filter(element => (element.level === level));
         // console.log(filterCourse);
         setFilteredCourse(filterCourse);
